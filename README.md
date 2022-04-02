@@ -13,7 +13,8 @@ Examen Final de Frontend IV
   * [Dependencias](#dependencias)
   * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
 * [Guía para comenzar](#guía-para-comenzar)
-  * [Paso 1](#paso-1)
+  * [Paso 0 - Instalación](#paso-0---instalación)
+  * [Paso 1 - Configuración](#paso-1---configuración)
   * [Paso 2](#paso-2)
   * [Paso 3](#paso-3)
   * [Paso 4](#paso-4)
@@ -141,7 +142,36 @@ Se podrán hacer uso de las siguientes dependencias adicionales para desarrollo 
 
 ## Guía para comenzar
 
-### Paso 1
+Ahora que ya vimos cuales son los requerimientos y funcionalidades que deberás llevar a cabo en este proyecto, haremos un recorrido por los principales pasos a seguir para poder completar el desarrollo de tu aplicación.
+
+### Paso 0 - Instalación
+
+Instalar Typescript
+
+`npm install typescript`
+
+Instalar Tipos de React
+
+`npm install @types/react @types/react-dom`
+
+Instalar Redux
+
+`npm install react-redux @types/react-redux`
+
+Y finalmente instalar Thunk
+
+`npm install redux-thunk`
+
+o Saga (Si lo preferis en vez de Thunk)
+
+`npm install redux-saga`
+
+### Paso 1 - Configuración
+
+```
+import { createStore } from 'redux';
+
+```
 
 ### Paso 2
 
