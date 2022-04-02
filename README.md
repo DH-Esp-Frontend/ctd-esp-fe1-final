@@ -12,6 +12,7 @@ Examen Final de Frontend IV
   * [Iniciando la App](#iniciando-la-app)
   * [Dependencias](#dependencias)
   * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
+  * [Componentes de UI](#componentes-de-ui)
 * [Guía para comenzar](#guía-para-comenzar)
   * [Paso 0 - Instalación](#paso-0---instalación)
   * [Paso 1 - Configuración](#paso-1---configuración)
@@ -139,6 +140,17 @@ Se podrán hacer uso de las siguientes dependencias adicionales para desarrollo 
 * Jest y Testing Library
   * El uso de Testing esta permitido para verificar las funcionalidades. Testing es un tema de Frontend V, pero se abre la posibilidad de entregar el código final con casos de prueba. 
 
+### Componentes de UI
+
+El proyecto cuenta con componentes desarrollados en JavaScript, que **solo** deberán ser convertidos y tipados a TypeScript si son importados y utilizados.
+La finalidad de los mismos es facilitar el desarrollo, otorgando componentes que se encuentran correctamente estileados.
+
+Lista de componentes:
+* [src/componentes/personajes/personaje-tarjeta.componente.js]()
+* [src/componentes/episodios/episodio-tarjeta.componente.js]()
+* [src/componentes/botones/boton.componente.js]()
+* [src/componentes/botones/boton-favorito.componente.js]()
+* [src/componentes/paginacion/paginacion.componente.js]()
 
 ## Guía para comenzar
 
