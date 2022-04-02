@@ -7,11 +7,17 @@ Examen Final de Frontend IV
   * [Aspectos que modifican la valoración final de la nota](#aspectos-que-modifican-la-valoración-final-de-la-nota)
 * [Funcionalidades](#funcionalidades)
   * [Funcionalidades Obligatorias](#funcionalidades-obligatorias)
-  * [Funcionalidades Adionales o Extras](#funcionalidades-adionales-o-extras)
+  * [Funcionalidades Adicionales o Extras](#funcionalidades-adicionales-o-extras)
 * [Desarrollo](#desarrollo)
   * [Iniciando la App](#iniciando-la-app)
   * [Dependencias](#dependencias)
   * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
+* [Guía para comenzar](#guía-para-comenzar)
+  * [Paso 1](#paso-1)
+  * [Paso 2](#paso-2)
+  * [Paso 3](#paso-3)
+  * [Paso 4](#paso-4)
+  * [Paso 5](#paso-5)
 
 ## Requisitos
 
@@ -56,25 +62,39 @@ Buenas Practicas
  
 Las siguientes funcionalidades son requisitos necesarios para la aprobación del final y deben funcionar correctamente. 
  
-La aplicación deberá contar con dos páginas. En la página principal, se presentará un panel de filtros en la parte superior y un listado de elementos en la parte inferior.
-Los elementos que se mostrarán en la parte inferior, estarán representados por tarjetas que contendrán determinada información sobre cada uno de ellos. Como máximo, se mostrarán en pantalla 9 elementos.
+* La aplicación deberá contar con dos páginas
+  * La página de inicio presentará un panel de filtros en la parte superior y un listado de personajes en la parte inferior.
+  * La página de favoritos presentará un listado de los personajes que hayan sido marcado como favoritos
 
+* La pagina de inicio
+  * Panel de filtros
+    * Contendrá un input en donde una persona usuaria puede ingresar cualquier texto en base al cual desee filtrar los personajes
+    * Si el usuario borra el texto, se deberá mostrar el estado inicial, es decir la búsqueda sin filtro.
+    * Se debera incluir un boton de "Limpiar filtros", el cual debera borrar el texto dentro del input y mostrar el estado inicial, es decir la búsqueda sin filtro.
 
-El panel de filtros contendrá un input en donde una persona usuaria puede ingresar cualquier texto en base al cual desee filtrar los resultados. Además, existirá un input de tipo “select”, que permitirá a la persona elegir entre distintos criterios de búsqueda.
+  * Listado de personajes 
+    * Debera mostrar los personajes, que estaran representados por tarjetas con información sobre cada uno de ellos
+    * Como máximo se deben mostrar en pantalla 9 tarjetas por página de personajes.
+    * Se deberá poder marcar y desmarcar cada personaje como favorito desde su tarjeta individual, teniendo que persister ese estado en la aplicación.
+    * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no. 
+  
+* La pagina de favoritos
+  *  Todo personaje marcados como favoritos, deberán aparecer dentro del listado de favoritos en la segunda página de la aplicación.
+  *  El usuario podrá desmarcar cada personaje, en cuyo caso deberán desaparecer de este listado.
+  *  Un elemento que haya sido desmarcado de los favoritos, podrá ser marcado nuevamente desde la pantalla de inicio.
+    
 
-A partir de que la persona escribe 3 caracteres, los resultados que se muestran en pantalla deberán responder a los filtros aplicados por el usuario (ambos filtros en forma combinada). Si el usuario borra el texto, deberá mostrar el listado inicial.
+### Funcionalidades Adicionales o Extras 
 
-Se deberá incluir un botón de “Limpiar filtros”, el cual deberá borrar el texto dentro del input y mostrar los elementos iniciales.
+Las siguientes funcionalidades no son requisito para la aprobación, pero si influyen en la nota final, siempre que se encuentren funcionando de forma correcta.
 
-Se deberá poder marcar y desmarcar cada elemento como favorito desde la pantalla inicial, debiendo persistir ese estado en la aplicación. Se debe poder diferenciar si un elemento se encuentra marcado como favorito o no.
+* La pagina de favoritos
+  * Podrá contar con un boton "Eliminar Todos", que deberá desmarcar todos los personajes del listado de favoritos, y los mismos no deberán aparecer marcados en la pagina principal
 
-Los elementos marcados como favoritos, deberán aparecer dentro del listado de favoritos que se encuentran en la segunda página de la aplicación. Desde allí, el usuario podrá desmarcarlos en cuyo caso deberán desaparecer de dicho listado. Además, un elemento que haya sido desmarcado desde la página de favoritos, debe poder ser marcado nuevamente como favorito desde la pantalla principal.
-
-### Funcionalidades Adionales o Extras 
-
-Las siguientes funcionalidades no son requisito para la aprobación, pero si influyen en la nota final, siempre que encuentren funcionando de forma correcta.
-
-
+* La vista de personajes 
+   * Esta es una tercer pagina, no obligatoria, que va a requerir de la invocación de la API de [Episodios](https://rickandmortyapi.com/documentation/#get-multiple-episodes) de Rick and Morty
+   * Al hacer clic en uno de los personajes, deberemos redigirnos a la tercer pagina, donde se mostrara el personaje seleccionado junto con un listado de tarjetas de cada episodio en el que aparece el personaje. 
+   * Podemos indicar si el personaje esta marcado como favorito o no, y junto con la posibilidad de marcarlo o desmarcarlo
 
 
 
@@ -117,3 +137,16 @@ Se podrán hacer uso de las siguientes dependencias adicionales para desarrollo 
   
 * Jest y Testing Library
   * El uso de Testing esta permitido para verificar las funcionalidades. Testing es un tema de Frontend V, pero se abre la posibilidad de entregar el código final con casos de prueba. 
+
+
+## Guía para comenzar
+
+### Paso 1
+
+### Paso 2
+
+### Paso 3
+
+### Paso 4
+
+### Paso 5
