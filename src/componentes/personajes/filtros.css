@@ -1,6 +1,7 @@
 .filtros {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 .filtros label {
   margin-bottom: 10px;

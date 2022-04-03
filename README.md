@@ -3,12 +3,12 @@ Examen Final de Frontend IV
 
 ## Indice
 * [Requisitos](#requisitos)
-  * [Condiciones minimas de aprobación](#condiciones-minimas-de-aprobación)
+  * [Condiciones mínimas de aprobación](#condiciones-mínimas-de-aprobación)
   * [Aspectos que modifican la valoración final de la nota](#aspectos-que-modifican-la-valoración-final-de-la-nota)
 * [Funcionalidades](#funcionalidades)
-  * [Funcionalidades Obligatorias](#funcionalidades-obligatorias)
-  * [Funcionalidades Adicionales o Extras](#funcionalidades-adicionales-o-extras)
-  * [Resultado Final](#resultado-final)
+  * [Funcionalidades obligatorias](#funcionalidades-obligatorias)
+  * [Funcionalidades extras](#funcionalidades-extras)
+  * [Resultado final](#resultado-final)
 * [Desarrollo](#desarrollo)
   * [Iniciando la App](#iniciando-la-app)
   * [Dependencias](#dependencias)
@@ -33,89 +33,90 @@ Examen Final de Frontend IV
 
 Es indispensable realizar un Fork de este proyecto, para poder trabajar de forma *individual*. No se aceptarán proyectos que se hayan realizado sin partir de este template.
 
-### Condiciones minimas de aprobación
+### Condiciones mínimas de aprobación
 
-* **Cumplir con todas las funcionalidades obligatorias**
-* Solo se podrán utilizar las librerías que se detallan en este README. 
-* No se considerará realizada cualquier funcionalidad que sea implementada utilizando una librería distinta a las permitidas.
-* Deberá ser desarrollada utilizando Typescript como lenguaje. Como mínimo, se espera que se utilice el tipado de props en los componentes de React.
-* Toda la información de los elementos, deberá provenir de la API de [Rick and Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
-* Debera ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, más el uso de una ThunkAction (Thunk) o function generadora (Saga)
-* Se deberá documentar correctamente al menos 7 funciones (Puede o no ser componentes de React)
+Las siguientes condiciones son requisitos mínimos necesarios para la aprobación del final:
+
+    * **Cumplir con todas las funcionalidades obligatorias**
+    * Solo se podrán utilizar las librerías que se detallan en este README.
+    * No se considerará realizada cualquier funcionalidad que sea implementada utilizando una librería distinta a las permitidas.
+    * Deberá ser desarrollada utilizando Typescript como lenguaje. Como mínimo, se espera que se utilice el tipado de props en los componentes de React.
+    * Toda la información de los elementos, deberá provenir de la API de [Rick and Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
+    * Deberá ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, más el uso de una ThunkAction (Thunk) o función generadora (Saga)
+    * Se deberá documentar correctamente al menos 7 funciones (Puede o no ser componentes de React)
 
 ### Aspectos que modifican la valoración final de la nota
 
-Los siguientes aspectos, si bien no constituyen requisitos para aprobar el trabajo, serán tenidos en cuenta al momento de determinar la nota final de cada trabajo:
+Los siguientes aspectos son extras al requisito mínimo de aprobación que serán tenidos en cuenta para aumentar la nota final, siempre y cuando su implementación sea correcta:
 
-TypeScript
-  * Será tenido en cuenta uso de Typescript más allá del tipado de las props de componentes, en especial para el caso de funciones que desarrollen lógica reutilizable, de las actions y de los reducers.
-  * Se valorará la reutilización de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
+    TypeScript
+      * Será tenido en cuenta uso de Typescript más allá del tipado de las props de componentes, en especial para el caso de funciones que desarrollen lógica reutilizable, de las actions y de los reducers.
+      * Se valorará la reutilización de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
 
-Documentación
-  * Se valorará el correcto uso de la documentación en todas las funciones y componentes.
+    Documentación
+      * Se valorará el correcto uso de la documentación en todas las funciones y componentes.
 
-Validaciones
-  * Se valorará el agregado de validaciones de flujos alternativos al normal, el manejo de errores en las distintas funcionalidades implementadas.
+    Validaciones
+      * Se valorará el agregado de validaciones de flujos alternativos al normal y el manejo de errores en las distintas funcionalidades implementadas.
 
-Redux
-  * Se valorará el uso correcto de Redux, para el almacenamiento del estado completo de la aplicación. 
+    Redux
+      * Se valorará el uso correcto de Redux para el almacenamiento del estado completo de la aplicación.
 
-Thunk o Sagas
-  * se valorará el uso correcto de Thunk o Saga para la utilización de cada función asincrónica dentro de cada funcionalidad. 
+    Thunk o Saga
+      * Se valorará el uso correcto de Thunk o Saga para la utilización de cada función asincrónica dentro de cada funcionalidad.
 
-Funcionalidades adicionales o extras
-  * se valorará el agregado de las funcionalidades extras detalladas anteriormente.
-
-Buenas Prácticas
-  * Se prestará especial atención al uso de buenas prácticas, reutilización de componentes y funcionalidades comunes, renderizado dinámico.
+    Buenas Prácticas
+      * Se prestará especial atención al uso de buenas prácticas, reutilización de componentes y funcionalidades comunes, y renderizado dinámico.
 
 ## Funcionalidades
 
-### Funcionalidades Obligatorias
- 
-Las siguientes funcionalidades son requisitos necesarios para la aprobación del final y deben funcionar correctamente. 
- 
-* La aplicación deberá contar con dos páginas
-  * La página de inicio presentará un panel de filtros en la parte superior y un listado de personajes en la parte inferior.
-  * La página de favoritos presentará un listado de los personajes que hayan sido marcado como favoritos
+### Funcionalidades obligatorias
 
-* La pagina de inicio
-  * Panel de filtros
-    * Contendrá un input en donde una persona usuaria puede ingresar cualquier texto en base al cual desee filtrar los personajes
-    * Si el usuario borra el texto, se deberá mostrar el estado inicial, es decir la búsqueda sin filtro.
-    * Se debera incluir un boton de "Limpiar filtros", el cual debera borrar el texto dentro del input y mostrar el estado inicial, es decir la búsqueda sin filtro.
+Las siguientes funcionalidades son requisitos mínimos necesarios para la aprobación del final y es fundamental que funcionen correctamente.
+ 
+* La aplicación deberá contar con dos páginas:
 
-  * Listado de personajes 
-    * Debera mostrar los personajes, que estaran representados por tarjetas con información sobre cada uno de ellos
-    * Como máximo se deben mostrar en pantalla 9 tarjetas por página de personajes.
-    * Se deberá poder marcar y desmarcar cada personaje como favorito desde su tarjeta individual, teniendo que persister ese estado en la aplicación.
-    * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no. 
-  
-* La pagina de favoritos
-  *  Todo personaje marcados como favoritos, deberán aparecer dentro del listado de favoritos en la segunda página de la aplicación.
-  *  El usuario podrá desmarcar cada personaje, en cuyo caso deberán desaparecer de este listado.
-  *  Un elemento que haya sido desmarcado de los favoritos, podrá ser marcado nuevamente desde la pantalla de inicio.
+  1 - La página de inicio que debe contar con:
+
+          * Panel de filtros:
+            * Contendrá un input en donde el usuario pueda ingresar cualquier texto que desee para hacer un filtro sobre los personajes.
+            * Si el usuario borra el texto ingresado, se deberá mostrar el estado inicial, es decir la búsqueda sin filtro.
+            * Se deberá incluir un boton de "Limpiar filtros", el cual deberá borrar el texto dentro del input y mostrar el estado inicial, es decir la búsqueda sin filtro.
+
+          * Listado de personajes
+            * Deberá mostrar los personajes, que estarán representados por tarjetas con información sobre cada uno de ellos.
+            * Como máximo se deben mostrar en pantalla 9 tarjetas de personajes por página.
+            * Se deberá poder marcar y desmarcar a cada personaje como favorito desde su tarjeta individual, teniendo que persistir ese estado en la aplicación.
+            * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no.
+
+  2 - La página de favoritos que deberá cumplir con los siguientes requisitos:
+
+            *  Todos los personaje marcados como favoritos, deberán aparecer dentro del listado de favoritos en la segunda página de la aplicación.
+            *  Si el usuario desmarca un personaje como favorito el mismo deberá desaparecer del listado de favoritos.
+            *  Un personaje que haya sido desmarcado de los favoritos, podrá ser marcado nuevamente desde la pantalla de inicio y deberá aparecer en el listado otra vez.
     
 
-### Funcionalidades Adicionales o Extras 
+### Funcionalidades extras
 
-Las siguientes funcionalidades no son requisito para la aprobación, pero si influyen en la nota final, siempre que se encuentren funcionando de forma correcta.
+Los siguientes aspectos son extras al requisito mínimo de aprobación que serán tenidos en cuenta para aumentar la nota final, siempre y cuando su funcionamiento sea correcto:
 
-* La pagina de favoritos
-  * Podrá contar con un boton "Eliminar Todos", que deberá desmarcar todos los personajes del listado de favoritos, y los mismos no deberán aparecer marcados en la pagina principal
+    * La página de favoritos:
+      * Podrá contar con un botón de "Eliminar todos", que deberá desmarcar todos los personajes del listado de favoritos y los mismos no deberán aparecer marcados como favoritos en la página principal.
 
-* La vista de personajes 
-   * Esta es una tercer pagina, no obligatoria, que va a requerir de la invocación de la API de [Episodios](https://rickandmortyapi.com/documentation/#get-multiple-episodes) de Rick and Morty
-   * Al hacer clic en uno de los personajes, deberemos redigirnos a la tercer pagina, donde se mostrara el personaje seleccionado junto con un listado de tarjetas de cada episodio en el que aparece el personaje. 
-   * Podemos indicar si el personaje esta marcado como favorito o no, y junto con la posibilidad de marcarlo o desmarcarlo
+    * Realización de una tercer página de vista de cada personaje:
+    Al hacer click sobre un personaje deberá redirigirnos a está página.
+        * Va a requerir de la invocación de la API de [Episodios](https://rickandmortyapi.com/documentation/#get-multiple-episodes) de Rick and Morty.
+        * Dentro de la vista de cada personaje:
+           * Se mostrará un listado de los episodios en los cuales aparece.
+           * También podríamos indicar si el personaje está marcado como favorito o no, y junto con la posibilidad de marcarlo o desmarcarlo.
 
-### Resultado Final
+### Resultado final
 
-Te dejamos un Gif para que veas como deberia funcionar tu aplicación.
+    Te dejamos un GIF como ejemplo de cómo debería funcionar tu aplicación.
 
-#### Resultado Final - Funcionalidades Obligatorias
+#### Resultado final - Funcionalidades obligatorias
 
-#### Resultado Final - Funcionalidades Extras
+#### Resultado final - Funcionalidades extras
 
 ## Desarrollo
 
@@ -163,13 +164,12 @@ El proyecto cuenta con componentes desarrollados en JavaScript, que **solo** deb
 La finalidad de los mismos es facilitar el desarrollo, otorgando componentes que se encuentran correctamente estileados.
 
 Lista de componentes:
-* [src/componentes/layout/encabezado.componente.jsx](src/componentes/layout/encabezado.componente.jsx) - Encabezado requerido para cada una de las paginas. Facilita la navegacion
-
-* [src/componentes/personajes/personaje-tarjeta.componente.js]()
-* [src/componentes/episodios/episodio-tarjeta.componente.js]()
-* [src/componentes/botones/boton.componente.js]()
-* [src/componentes/botones/boton-favorito.componente.js]()
-* [src/componentes/paginacion/paginacion.componente.js]()
+* [src/componentes/layout/encabezado.componente.jsx](src/componentes/layout/encabezado.componente.jsx) - Encabezado requerido para cada una de las páginas. Facilita la navegación
+* [src/componentes/personajes/filtros.componente.jsx](src/componentes/personajes/filtros.componente.jsx) - Componente con el input text para realizar el filtrado
+* [src/componentes/personajes/grilla-personajes.componente.jsx](src/componentes/personajes/grilla-personajes.componente.jsx) - Grilla de personajes para la pagina de inicio
+* [src/componentes/personajes/tarjeta-personaje.componente.jsx](src/componentes/personajes/tarjeta-personaje.componente.jsx) - Tarjeta para cada personaje dentro de la grilla de personajes.
+* [src/componentes/botones/boton-favorito.componente.jsx](src/componentes/botones/boton-favorito.componente.jsx) - Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
+* [src/componentes/episodios/tarjeta-episodio.componente.jsx](src/componentes/episodios/tarjeta-episodio.componente.jsx) - Tarjeta para cada episodio dentro de la vista de personaje.
 
 ## Entrega
 
@@ -213,6 +213,8 @@ o Saga (Si lo preferis en vez de Thunk)
 
 ### Paso 1 - Configuración de Redux 
 
+Configuracion de la Store
+
 ``` store.ts
 import {combineReducers} from "@reduxjs/toolkit";
 import personajesReducer from "../reducers/personajesReducer";
@@ -237,6 +239,15 @@ export const store = createStore(
     rootReducer, composeWithDevTools() // Aqui aplicaremos los middlewares
 )
 
+```
+
+Luego en el App.jsx deberás configurar el Provider
+```
+  import {Provider} from "react-redux";
+
+  <Provider store={store}>
+    ... 
+  </Provider>
 ```
 
 ### Paso 2 - Configuración de Thunk

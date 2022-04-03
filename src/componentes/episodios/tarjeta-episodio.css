@@ -1,0 +1,28 @@
+.tarjeta-episodio {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: #d0d0d0;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.tarjeta-episodio h4{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.tarjeta-episodio > span {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.tarjeta-episodio div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tarjeta-episodio div span:nth-child(1) {
+  margin-right: 10px;
+}
