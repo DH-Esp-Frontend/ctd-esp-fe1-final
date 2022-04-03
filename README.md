@@ -178,17 +178,23 @@ o Saga (Si lo preferis en vez de Thunk)
 
 `npm install redux-saga`
 
-### Paso 1 - Configuración
+### Paso 1 - Configuración de Redux 
 
 ```
 import { createStore } from 'redux';
 
 ```
 
-### Paso 2
+### Paso 2 - Configuración de Thunk
 
-### Paso 3
+Si vas a usar Saga, este paso lo podes saltear
 
-### Paso 4
+### Paso 3 - Configuración de Saga
+
+Este paso es opcional, solo lo necesitamos si vamos a utilizar Saga y no Thunk.
+
+
+
+### Paso 4 - Armado de la UI 
 
 ### Paso 5
