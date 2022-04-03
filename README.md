@@ -33,7 +33,7 @@ Es indispensable realizar un Fork de este proyecto, para poder trabajar de forma
 * Deberá ser desarrollada utilizando Typescript como lenguaje. Como mínimo, se espera que se utilice el tipado de props en los componentes de React.
 * Toda la información de los elementos, deberá provenir de la API de [Rick anb Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
 * Debera ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, mas el uso de una ThunkAction (Thunk) o funcion generadora (Saga)
-
+* Se deberá documentar correctamente al menos 7 funciones (Puede o no ser componentes de React)
 
 ### Aspectos que modifican la valoración final de la nota
 
@@ -42,6 +42,9 @@ Los siguientes aspectos, si bien no constituyen requisitos para aprobar el traba
 TypeScript
   * Será tenido en cuenta uso de Typescript más allá del tipado de las props de componentes, en especial para el caso de funciones que desarrollen lógica reutilizable, de las actions y de los reducers.
   * Se valorará la reutilización de de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
+
+Documentación
+  * Se valorará el correcto uso de la documentación en todas las funciones y componentes.
 
 Validaciones
   * Se valorará el agregado de validaciones de flujos alternativos al normal, el manejo de errores en las distintas funcionalidades implementadas.
@@ -193,8 +196,36 @@ Si vas a usar Saga, este paso lo podes saltear
 
 Este paso es opcional, solo lo necesitamos si vamos a utilizar Saga y no Thunk.
 
+### Paso 4 -
 
+### Paso 5 - Modelado
 
-### Paso 4 - Armado de la UI 
+Con Redux, TypeScript y Thunk (o Saga!) ya configurados, podes proceder al armado de las interfaces del modelo. Es decir, crear las interfaces de los objetos que vas a usar en el proyecto. 
+Para esto, te recomendamos que visualizas el diseño final, e identifiques los campos, variables y tipos que vas a necesitar en tus objetos para tiparlos correctamente. 
+No hace falta que sean perfectos en esta etapa, los podrás ajustar después, pero van a ser de gran ayuda para arrancar a trabajar! 
 
-### Paso 5
+### Paso 6 - Creación del estado y el/los reducer
+
+Es importante poder abstraernos un poco de la creación de la UI, y del HTML, para pensar en que funcionalidades queremos construir. 
+En esta etapa podemos identificar los eventos que muestra aplicación debe gestionar y que valores deben ser almacenados en el estado. 
+Por ejemplo, vamos a necesitar almacenar los personajes que nos retorne la API, junto con el estado de la petición. 
+
+Nota: No olvides agregar tu o tus reducers a la store dentro del combineReducers!
+
+### Paso 7 - Armado de la UI 
+Con el modelo ya creado, y nuestro reducer listo para ser utilizado, podemos proceder al armado de la UI básica. 
+Cómo te mencionamos anteriormente, el proyecto cuenta con algunos componentes que te recomendamos utilizar, pero recordar que debes tiparlos con TypeScript.
+Ya estarías en condiciones de armar la página principal, colocando el buscador, y armar una grilla que utilize las Tarjetas del personaje y el componente de paginacion. 
+
+Para probar esta pantalla, podes llamar a la API, directamente desde tu componente, mediante useEffect y utilizando useState, pero no olvides que deberás utilizar al menos una vez una llamada asíncronica por medio de Thunk o Saga como condición mínima para aprobar. 
+Te recomendamos dejar un //TODO para no olvidar modificar está función. 
+
+Con la grilla funcionando adecuadamente, podes proceder al armado del listado de favoritos. Para ello, te recomendamos utilizar la misma API, para probar el renderizado de la UI. 
+Una vez que muestres personajes en el listado de favoritos, ya podes colocar un //TODO para acordarte de integrar esto con el estado de Redux correspondiente. 
+
+### Paso 8 - Integración 
+Ahora sí, podemos ir componente a componente integrandolos con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado 
+Recordar que podes visualizar que está sucediendo en el estado a través de la extensión del Chrome ReduxDevTools y si es necesario debuggear para encontrar los posibles errores. 
+
+Mucha suerte y éxitos! 
+
