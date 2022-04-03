@@ -8,18 +8,26 @@ Examen Final de Frontend IV
 * [Funcionalidades](#funcionalidades)
   * [Funcionalidades Obligatorias](#funcionalidades-obligatorias)
   * [Funcionalidades Adicionales o Extras](#funcionalidades-adicionales-o-extras)
+  * [Resultado Final](#resultado-final)
 * [Desarrollo](#desarrollo)
   * [Iniciando la App](#iniciando-la-app)
   * [Dependencias](#dependencias)
   * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
   * [Componentes de UI](#componentes-de-ui)
+* [Entrega](#entrega)
+  * [Fecha de Entrega](#fecha-de-entrega)
+  * [Formato de Entrega](#formato-de-entrega)
 * [Guía para comenzar](#guía-para-comenzar)
   * [Paso 0 - Instalación](#paso-0---instalación)
-  * [Paso 1 - Configuración](#paso-1---configuración)
-  * [Paso 2](#paso-2)
-  * [Paso 3](#paso-3)
+  * [Paso 1 - Configuración de Redux](#paso-1---configuración-de-redux)
+  * [Paso 2 - Configuración de Thunk](#paso-2---configuración-de-thunk)
+  * [Paso 3 - Configuración de Saga](#paso-3---configuración-de-saga)
   * [Paso 4](#paso-4)
-  * [Paso 5](#paso-5)
+  * [Paso 5 - Modelado](#paso-5---modelado)
+  * [Paso 6 - Creación del estado y el/los reducer](#paso-6---creación-del-estado-y-ellos-reducer) 
+  * [Paso 7 - Armado de la UI](#paso-7---armado-de-la-ui)
+  * [Paso 8 - Integración](#paso-8---integración) 
+
 
 ## Requisitos
 
@@ -31,7 +39,7 @@ Es indispensable realizar un Fork de este proyecto, para poder trabajar de forma
 * Solo se podrán utilizar las librerías que se detallan en este README. 
 * No se considerará realizada cualquier funcionalidad que sea implementada utilizando una librería distinta a las permitidas.
 * Deberá ser desarrollada utilizando Typescript como lenguaje. Como mínimo, se espera que se utilice el tipado de props en los componentes de React.
-* Toda la información de los elementos, deberá provenir de la API de [Rick anb Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
+* Toda la información de los elementos, deberá provenir de la API de [Rick and Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
 * Debera ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, mas el uso de una ThunkAction (Thunk) o funcion generadora (Saga)
 * Se deberá documentar correctamente al menos 7 funciones (Puede o no ser componentes de React)
 
@@ -101,7 +109,13 @@ Las siguientes funcionalidades no son requisito para la aprobación, pero si inf
    * Al hacer clic en uno de los personajes, deberemos redigirnos a la tercer pagina, donde se mostrara el personaje seleccionado junto con un listado de tarjetas de cada episodio en el que aparece el personaje. 
    * Podemos indicar si el personaje esta marcado como favorito o no, y junto con la posibilidad de marcarlo o desmarcarlo
 
+### Resultado Final
 
+Te dejamos un Gif para que veas como deberia funcionar tu aplicación.
+
+#### Resultado Final - Funcionalidades Obligatorias
+
+#### Resultado Final - Funcionalidades Extras
 
 ## Desarrollo
 
@@ -154,6 +168,20 @@ Lista de componentes:
 * [src/componentes/botones/boton.componente.js]()
 * [src/componentes/botones/boton-favorito.componente.js]()
 * [src/componentes/paginacion/paginacion.componente.js]()
+
+## Entrega
+
+### Fecha de Entrega
+
+Solo se admitirán entregas recibidas hasta el cierre de la clase 24, clase de Evaluación Final. 
+
+### Formato de Entrega
+
+Se aceptará la entrega mediante la submisión de la URL de un repositorio de Github Privado, que haya compatido acceso a las siguientes cuentas: 
+* Camada 1 - Profesor: Tomás de Priede - Cuenta de Github [@tomiito](https://github.com/tomiito)
+* Camada 2 - Profesor: Matías Rivas - Cuenta de Github [@TODO](https://github.com/)
+
+El link al Google Form para la submisión sera enviado por el profesor a cargo de la comisión.
 
 ## Guía para comenzar
 
@@ -224,8 +252,9 @@ Con la grilla funcionando adecuadamente, podes proceder al armado del listado de
 Una vez que muestres personajes en el listado de favoritos, ya podes colocar un //TODO para acordarte de integrar esto con el estado de Redux correspondiente. 
 
 ### Paso 8 - Integración 
-Ahora sí, podemos ir componente a componente integrandolos con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado 
-Recordar que podes visualizar que está sucediendo en el estado a través de la extensión del Chrome ReduxDevTools y si es necesario debuggear para encontrar los posibles errores. 
+Ahora sí, podemos ir componente a componente integrando con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado 
+
+*Tip: Recordá que podes visualizar que está sucediendo en el estado a través de la extensión del Chrome ReduxDevTools y si es necesario debuggear para encontrar los posibles errores.*
 
 Mucha suerte y éxitos! 
 
