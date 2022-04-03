@@ -85,7 +85,7 @@ Las siguientes funcionalidades son requisitos mínimos necesarios para la aproba
 
           * Listado de personajes
             * Deberá mostrar los personajes, que estarán representados por tarjetas con información sobre cada uno de ellos.
-            * Como máximo se deben mostrar en pantalla 9 tarjetas de personajes por página.
+            * Como máximo se deben mostrar en pantalla 20 tarjetas de personajes por página.
             * Se deberá poder marcar y desmarcar a cada personaje como favorito desde su tarjeta individual, teniendo que persistir ese estado en la aplicación.
             * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no.
 
@@ -165,11 +165,11 @@ La finalidad de los mismos es facilitar el desarrollo, otorgando componentes que
 
 Lista de componentes:
 * [src/componentes/layout/encabezado.componente.jsx](src/componentes/layout/encabezado.componente.jsx) - Encabezado requerido para cada una de las páginas. Facilita la navegación
-* [src/componentes/personajes/filtros.componente.jsx](src/componentes/personajes/filtros.componente.jsx) - Componente con el input text para realizar el filtrado
+* [src/componentes/personajes/filtros.componente.tsx](src/componentes/personajes/filtros.componente.tsx) - Componente con el input text para realizar el filtrado
 * [src/componentes/personajes/grilla-personajes.componente.jsx](src/componentes/personajes/grilla-personajes.componente.jsx) - Grilla de personajes para la pagina de inicio
-* [src/componentes/personajes/tarjeta-personaje.componente.jsx](src/componentes/personajes/tarjeta-personaje.componente.jsx) - Tarjeta para cada personaje dentro de la grilla de personajes.
+* [src/componentes/personajes/tarjeta-personaje.componente.tsx](src/componentes/personajes/tarjeta-personaje.componente.tsx) - Tarjeta para cada personaje dentro de la grilla de personajes.
 * [src/componentes/botones/boton-favorito.componente.jsx](src/componentes/botones/boton-favorito.componente.jsx) - Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
-* [src/componentes/episodios/tarjeta-episodio.componente.jsx](src/componentes/episodios/tarjeta-episodio.componente.jsx) - Tarjeta para cada episodio dentro de la vista de personaje.
+* [src/componentes/episodios/tarjeta-episodio.componente.tsx](src/componentes/episodios/tarjeta-episodio.componente.tsx) - Tarjeta para cada episodio dentro de la vista de personaje.
 
 ## Entrega
 
@@ -201,7 +201,7 @@ Instalar Tipos de React
 
 Instalar Redux
 
-`npm install react-redux@7.2.6 @types/react-redux@7.1.23`
+`npm install react-redux@7.2.6 @types/react-redux@7.1.23 @reduxjs/toolkit`
 
 Y finalmente instalar Thunk
 
@@ -217,7 +217,6 @@ Configuracion de la Store
 
 ``` store.ts
 import {combineReducers} from "@reduxjs/toolkit";
-import personajesReducer from "../reducers/personajesReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Importamos applyMiddleware de Redux, para poder agregar Thunk o Saga como Middleware
@@ -227,7 +226,7 @@ import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux
 
 
 const rootReducer = combineReducers({
-    personajes: personajesReducer,
+   
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;
