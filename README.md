@@ -22,7 +22,7 @@ Examen Final de Frontend IV
   * [Paso 1 - Configuración de Redux](#paso-1---configuración-de-redux)
   * [Paso 2 - Configuración de Thunk](#paso-2---configuración-de-thunk)
   * [Paso 3 - Configuración de Saga](#paso-3---configuración-de-saga)
-  * [Paso 4](#paso-4)
+  * [Paso 4 - Tipado de los componentes existentes](#paso-4---tipado-de-los-componentes-existentes)
   * [Paso 5 - Modelado](#paso-5---modelado)
   * [Paso 6 - Creación del estado y el/los reducer](#paso-6---creación-del-estado-y-ellos-reducer) 
   * [Paso 7 - Armado de la UI](#paso-7---armado-de-la-ui)
@@ -40,7 +40,7 @@ Es indispensable realizar un Fork de este proyecto, para poder trabajar de forma
 * No se considerará realizada cualquier funcionalidad que sea implementada utilizando una librería distinta a las permitidas.
 * Deberá ser desarrollada utilizando Typescript como lenguaje. Como mínimo, se espera que se utilice el tipado de props en los componentes de React.
 * Toda la información de los elementos, deberá provenir de la API de [Rick and Morty](https://rickandmortyapi.com/). No se admiten datos duros (hardcodeados) en el frontend. Para ello, se deberá implementar la lógica para manejar el pedido a dicha API.
-* Debera ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, mas el uso de una ThunkAction (Thunk) o funcion generadora (Saga)
+* Debera ser desarrollada utilizando **Redux** junto con **Thunk** o **Saga**. Se otorga la posibilidad de elegir entre una de las dos. Como mínimo se espera el uso correcto de un reducer, más el uso de una ThunkAction (Thunk) o function generadora (Saga)
 * Se deberá documentar correctamente al menos 7 funciones (Puede o no ser componentes de React)
 
 ### Aspectos que modifican la valoración final de la nota
@@ -49,7 +49,7 @@ Los siguientes aspectos, si bien no constituyen requisitos para aprobar el traba
 
 TypeScript
   * Será tenido en cuenta uso de Typescript más allá del tipado de las props de componentes, en especial para el caso de funciones que desarrollen lógica reutilizable, de las actions y de los reducers.
-  * Se valorará la reutilización de de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
+  * Se valorará la reutilización de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
 
 Documentación
   * Se valorará el correcto uso de la documentación en todas las funciones y componentes.
@@ -61,13 +61,13 @@ Redux
   * Se valorará el uso correcto de Redux, para el almacenamiento del estado completo de la aplicación. 
 
 Thunk o Sagas
-  * se valorará el uso correcto de Thunk o Saga para la utilización de cada función asincronica dentro de cada funcionalidad. 
+  * se valorará el uso correcto de Thunk o Saga para la utilización de cada función asincrónica dentro de cada funcionalidad. 
 
 Funcionalidades adicionales o extras
-  * se valorará el agregado de las funcionalides extras detalladas anterioremente.
+  * se valorará el agregado de las funcionalidades extras detalladas anteriormente.
 
-Buenas Practicas
-  * Se prestará especial atención al uso de buenas prácticas, reutilización de componentes y funcionalidades comunes, renderizado dinámico, entre otros.
+Buenas Prácticas
+  * Se prestará especial atención al uso de buenas prácticas, reutilización de componentes y funcionalidades comunes, renderizado dinámico.
 
 ## Funcionalidades
 
@@ -131,7 +131,7 @@ Podemos iniciar nuestra aplicación con el comando
 
 ### Dependencias
 
-Se utilizara la version de React 17.0.2, junto con la version 5 de React Scripts
+Se utilizara la version de React 17.0.2, junto con la version 5 de React Scripts. React-Router ya se encuentra instalado y configurado para la navegación.
 
 Solo se podrán instalar las siguientes dependencias:
 * Redux (incluida @reduxjs/toolkit)
@@ -163,6 +163,8 @@ El proyecto cuenta con componentes desarrollados en JavaScript, que **solo** deb
 La finalidad de los mismos es facilitar el desarrollo, otorgando componentes que se encuentran correctamente estileados.
 
 Lista de componentes:
+* [src/componentes/layout/encabezado.componente.jsx](src/componentes/layout/encabezado.componente.jsx) - Encabezado requerido para cada una de las paginas. Facilita la navegacion
+
 * [src/componentes/personajes/personaje-tarjeta.componente.js]()
 * [src/componentes/episodios/episodio-tarjeta.componente.js]()
 * [src/componentes/botones/boton.componente.js]()
@@ -181,38 +183,59 @@ Se aceptará la entrega mediante la submisión de la URL de un repositorio de Gi
 * Camada 1 - Profesor: Tomás de Priede - Cuenta de Github [@tomiito](https://github.com/tomiito)
 * Camada 2 - Profesor: Matías Rivas - Cuenta de Github [@TODO](https://github.com/)
 
-El link al Google Form para la submisión sera enviado por el profesor a cargo de la comisión.
+El link al Google Form para la submisión será enviado por el profesor a cargo de la comisión.
 
 ## Guía para comenzar
 
-Ahora que ya vimos cuales son los requerimientos y funcionalidades que deberás llevar a cabo en este proyecto, haremos un recorrido por los principales pasos a seguir para poder completar el desarrollo de tu aplicación.
+Ahora que ya vimos cuáles son los requerimientos y funcionalidades que deberás llevar a cabo en este proyecto, haremos un recorrido por los principales pasos a seguir para poder completar el desarrollo de tu aplicación.
 
 ### Paso 0 - Instalación
 
 Instalar Typescript
 
-`npm install typescript`
+`npm install typescript@4.6.3`
 
 Instalar Tipos de React
 
-`npm install @types/react @types/react-dom`
+`npm install --dev @types/node@16.11.26 @types/react@17.0.43 @types/react-dom@17.0.14`
 
 Instalar Redux
 
-`npm install react-redux @types/react-redux`
+`npm install react-redux@7.2.6 @types/react-redux@7.1.23`
 
 Y finalmente instalar Thunk
 
-`npm install redux-thunk`
+`npm install redux-thunk@2.4.1`
 
 o Saga (Si lo preferis en vez de Thunk)
 
-`npm install redux-saga`
+`npm install redux-saga@1.1.3`
 
 ### Paso 1 - Configuración de Redux 
 
-```
-import { createStore } from 'redux';
+``` store.ts
+import {combineReducers} from "@reduxjs/toolkit";
+import personajesReducer from "../reducers/personajesReducer";
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+// Importamos applyMiddleware de Redux, para poder agregar Thunk o Saga como Middleware
+import { createStore, applyMiddleware } from 'redux';
+import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
+
+
+
+const rootReducer = combineReducers({
+    personajes: personajesReducer,
+});
+
+export type IRootState = ReturnType<typeof rootReducer>;
+
+// Tipamos el hook useSelector
+export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector
+
+export const store = createStore(
+    rootReducer, composeWithDevTools() // Aqui aplicaremos los middlewares
+)
 
 ```
 
@@ -220,11 +243,42 @@ import { createStore } from 'redux';
 
 Si vas a usar Saga, este paso lo podes saltear
 
+``` store.ts
+// Importamos el thunk de redux-thunk
+import thunk from 'redux-thunk'
+
+export const store = createStore(
+    rootReducer, composeWithDevTools(applyMiddleware(thunk)) // 
+)
+
+```
+
+
 ### Paso 3 - Configuración de Saga
 
 Este paso es opcional, solo lo necesitamos si vamos a utilizar Saga y no Thunk.
 
-### Paso 4 -
+``` store.ts
+// Importamos el thunk de redux-thunk
+import createSagaMiddleware from "redux-saga";
+
+... 
+
+const sagaMiddleware = createSagaMiddleware()
+
+...
+
+export const store = createStore(
+    rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware))
+)
+
+// Levanta los observadores, es decir corre los Saga
+// sagaMiddleware.run(tusSaga)  Una vez que crees tu archivo con los Sagas, deberas ejecutarlos acá
+
+```
+
+
+### Paso 4 - Tipado de los componentes existentes
 
 ### Paso 5 - Modelado
 

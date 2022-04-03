@@ -1,0 +1,16 @@
+.filtros {
+  display: flex;
+  flex-direction: column;
+}
+.filtros label {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.filtros input[type="text"]{
+  flex-grow: 1;
+  padding: 15px 20px; 
+  border-radius: 3px;
+  border: 1px solid #d0d0d0;
+}

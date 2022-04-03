@@ -1,0 +1,42 @@
+header {
+  background-color: white;
+  border-bottom: 1px solid #d0d0d0;
+  width: calc(100% - 60px);
+  color: black;
+  padding: 25px 30px;
+}
+
+header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > div h2{
+  margin: 0
+}
+
+header > div nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+header > div nav ul li {
+  list-style: none;
+}
+
+header > div nav ul li a {
+  padding: 5px 20px;
+  text-decoration: none;
+  color: black;
+  opacity: 0.8;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+header > div nav ul li a:hover {
+  color: rgba(57, 146, 255, 1);
+}
