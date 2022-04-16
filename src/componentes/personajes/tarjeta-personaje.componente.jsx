@@ -9,12 +9,12 @@ import './tarjeta-personaje.css';
  * 
  * @returns un JSX element 
  */
-const TarjetaPersonaje = () => {
+const TarjetaPersonaje = ({personaje}) => {
 
-    return <div className="tarjeta-personaje">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
+    return <div className="tarjeta-personaje" key={"personaje_" + personaje.id}>
+        <img src={personaje.image} alt={personaje.name}/>
         <div className="tarjeta-personaje-body">
-            <span>Rick Sanchez</span>
+            <span>{personaje.name}</span>
             <BotonFavorito esFavorito={false} />
         </div>
     </div>

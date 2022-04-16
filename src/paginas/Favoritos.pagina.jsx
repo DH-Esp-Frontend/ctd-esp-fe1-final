@@ -1,5 +1,5 @@
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
-
+import {React} from 'react';
 /**
  * Esta es la pagina de favoritos. Aquí se deberan ver todos los personajes marcados como favoritos
  * 
