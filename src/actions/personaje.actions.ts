@@ -23,9 +23,16 @@ export interface BuscarProximaPaginaAction extends Action {
     type: 'BUSCAR_PROXIMA_PAGINA',
 }
 
+export interface AgregarFavoritoAction extends Action {
+    type: 'AGREGAR_FAVORITO',
+    personaje: Personaje
+}
+export interface EliminarFavoritoAction extends Action {
+    type: 'ELIMINAR_FAVORITO',
+    personaje: Personaje
+}
 
-
-export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction;
+export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction | AgregarFavoritoAction | EliminarFavoritoAction;
 
 interface BuscarPersonajesThunkAction extends ThunkAction<void, IRootState, unknown, PersonajeAction> {};
 
@@ -50,17 +57,30 @@ const buscarPersonajesError: ActionCreator<BuscarPersonajesErrorAction> = (error
         error: error
     }
 }
-
-export const buscarProximaPagina: ActionCreator<BuscarProximaPaginaAction> = () => {
-    return {
-        type: 'BUSCAR_PROXIMA_PAGINA',
-    }
-}
 const buscarProximaPaginaSuccess: ActionCreator<BuscarPersonajesSuccessAction> = (personajes: Personaje[], siguientePagina:string) => {
     return {
         type: 'BUSCAR_PROXIMA_PAGINA_SUCCESS',
         siguientePagina: siguientePagina,
         personajes: personajes
+    }
+}
+
+export const agregarFavorito: ActionCreator<AgregarFavoritoAction> = (personaje: Personaje) => {
+    return {
+        type: 'AGREGAR_FAVORITO',
+        personaje: personaje
+    }
+}
+export const eliminarFavorito: ActionCreator<EliminarFavoritoAction> = (personaje: Personaje) => {
+    return {
+        type: 'ELIMINAR_FAVORITO',
+        personaje: personaje
+    }
+}
+
+export const buscarProximaPagina: ActionCreator<BuscarProximaPaginaAction> = () => {
+    return {
+        type: 'BUSCAR_PROXIMA_PAGINA',
     }
 }
 
@@ -83,7 +103,7 @@ export const buscarProximaPaginaThunk = (): BuscarPersonajesThunkAction => {
         const { siguientePagina } = getState().personajes;
         if (siguientePagina !== "") {
             try {
-                const respuesta = await buscarPersonajesPorPaginaAPI( siguientePagina);
+                const respuesta = await buscarPersonajesPorPaginaAPI(siguientePagina);
                 dispatch(buscarProximaPaginaSuccess(respuesta.personajes, respuesta.siguientePagina));
             } catch (error) {
                 dispatch(buscarPersonajesError(error));

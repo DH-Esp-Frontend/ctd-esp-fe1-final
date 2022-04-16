@@ -11,6 +11,9 @@ export interface PersonajeState {
     siguientePagina: string,
     status: "LOADING" | "SUCCESS" | "ERROR";
     error: string | null;
+    favoritos: Personaje[];
+    favoritosPaginas: Pagina[];
+    favoritosId: number[];
 }
 
 const initialState: PersonajeState = {
@@ -19,7 +22,10 @@ const initialState: PersonajeState = {
     paginas: [],
     siguientePagina: "",
     status: "SUCCESS",
-    error: null
+    error: null,
+    favoritos: [],
+    favoritosPaginas: [],
+    favoritosId: []
 };
 
 export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state = initialState, action): PersonajeState => {
@@ -52,6 +58,21 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
                 siguientePagina: action.siguientePagina,
                 status: "SUCCESS"
             };
+        case "AGREGAR_FAVORITO":
+            return {
+                ...state,
+                favoritos: [...state.favoritos.filter(personaje => personaje.id !== action.personaje.id), action.personaje],
+                favoritosPaginas: paginarRespuesta([...state.favoritos.filter(personaje => personaje.id !== action.personaje.id), action.personaje]),
+                favoritosId: [...state.favoritosId.filter(id => id !== action.personaje.id), action.personaje.id]
+            };
+        case "ELIMINAR_FAVORITO":
+            return {
+                ...state,
+                favoritos: state.favoritos.filter(personaje => personaje.id !== action.personaje.id),
+                favoritosPaginas: paginarRespuesta(state.favoritos.filter(personaje => personaje.id !== action.personaje.id)),
+                favoritosId: state.favoritosId.filter(id => id !== action.personaje.id)
+            };
+
         default:
             return state;
     }

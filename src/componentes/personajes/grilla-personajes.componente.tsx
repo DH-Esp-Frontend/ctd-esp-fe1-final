@@ -17,23 +17,25 @@ import { useDispatch } from 'react-redux';
 
 export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
-const GrillaPersonajes:FC = () => {
+interface GrillaProps {
+    tipo: 'paginas' | 'favoritosPaginas';
+}
+
+const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
 
     const dispatch = useDispatch();
-    const {paginas, status} = useSelector(state => state.personajes);
+    const estado = useSelector(state => state.personajes);
     const {pagina} = useSelector(state => state.pagina);
 
-    // Carga incial de personajes
-    useEffect(() => {
-        dispatch(buscarPersonajesThunk(''));
-    }, []);
+    const status = estado.status;
+    const tipoPaginas = estado[tipo]
 
     if (status === 'LOADING') return <div>Cargando...</div>
     if (status === 'ERROR') return <div>Error en la carga de personajes.</div>
+
+    if (!tipoPaginas || tipoPaginas.length === 0) return <div></div>
     
-    if (!paginas || paginas.length === 0) return <div></div>
-    
-    const personajes_en_pagina = paginas.find((paginas) => paginas.id === pagina);
+    const personajes_en_pagina = tipoPaginas.find((tipoPaginas) => tipoPaginas.id === pagina);
     return <div className="grilla-personajes">
        {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map(personaje => <TarjetaPersonaje personaje={personaje}/>)}
     </div>
