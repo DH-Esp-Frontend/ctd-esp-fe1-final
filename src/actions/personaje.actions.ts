@@ -1,5 +1,6 @@
 import { Action, ActionCreator, ThunkAction } from '@reduxjs/toolkit';
 import { type } from 'os';
+import { useDispatch } from 'react-redux';
 import { buscarPersonajesAPI } from '../services/personaje.services';
 import { IRootState } from '../store/store';
 import Personaje  from '../types/personaje.type';
@@ -47,15 +48,14 @@ const buscarPersonajesError: ActionCreator<BuscarPersonajesErrorAction> = (error
 
 export const buscarPersonajesThunk = (name: string): BuscarPersonajesThunkAction => {
     return async (dispatch, getState) => {
-        if (name === "") {
-            return dispatch(buscarPersonajesSuccess([]));
-        }
-        dispatch(buscarPersonajes(name));
-        try {
-            const personajes = await buscarPersonajesAPI(name);
-            dispatch(buscarPersonajesSuccess(personajes));
-        } catch (error) {
-            dispatch(buscarPersonajesError(error));
+        if (name.length > 2 || name.length === 0) { 
+            dispatch(buscarPersonajes(name));
+            try {
+                const personajes = await buscarPersonajesAPI(name);
+                dispatch(buscarPersonajesSuccess(personajes));
+            } catch (error) {
+                dispatch(buscarPersonajesError(error));
+            }
         }
     }
 }

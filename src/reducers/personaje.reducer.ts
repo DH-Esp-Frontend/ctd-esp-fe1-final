@@ -1,10 +1,11 @@
 import { Reducer } from "@reduxjs/toolkit";
 import { PersonajeAction } from "../actions/personaje.actions"; 
-import  Personaje from "../types/personaje.type";
+import  Pagina from "../types/pagina.type";
+import { paginarRespuesta } from "../utils/paginarRespuesta";
 
 export interface PersonajeState {
     busqueda: string;
-    personajes: Personaje[];
+    personajes: Pagina[];
     status: "LOADING" | "SUCCESS" | "ERROR";
     error: string | null;
 }
@@ -27,7 +28,7 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
         case "BUSCAR_PERSONAJES_SUCCESS":
             return {
                 ...state,
-                personajes: action.personajes,
+                personajes: paginarRespuesta(action.personajes),
                 status: "SUCCESS"
             };
         case "BUSCAR_PERSONAJES_ERROR":

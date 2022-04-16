@@ -6,10 +6,12 @@ import { createStore, applyMiddleware } from 'redux';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
 import thunk from "redux-thunk";
 import {personajeReducer} from "../reducers/personaje.reducer";
+import {paginaReducer} from "../reducers/pagina.reducer";
 
 
 const rootReducer = combineReducers({
    personajes: personajeReducer,
+   pagina: paginaReducer
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;
