@@ -15,7 +15,7 @@ import { FC } from 'react';
  */
 
 interface PaginacionProps  {
-    tipoPagina: 'pagina' | 'paginaFav';
+    tipoPagina: 'personajes' | 'favoritos';
 }
 
 const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
@@ -25,8 +25,8 @@ const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
     
     
     const siguientePagina = personajeEstado.siguientePagina;
-    const paginas = personajeEstado[tipoPagina === 'pagina' ? 'paginas' : 'favoritosPaginas']; 
-    const pagina = paginaState[tipoPagina === 'pagina' ? 'pagina' : 'paginaFav'];
+    const paginas = personajeEstado[tipoPagina === 'personajes' ? 'personajesPaginas' : 'favoritosPaginas']; 
+    const pagina = paginaState[tipoPagina === 'personajes' ? 'personajes' : 'favoritos'];
 
     /**
      * Función que se ejecuta al hacer click en el botón de siguiente
@@ -35,7 +35,7 @@ const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
      */
     const handleIncrementarPagina = () => {
         console.log(pagina, siguientePagina);
-        if (pagina === Object.keys(paginas).length - 2 && siguientePagina !== "" && tipoPagina === 'pagina') {
+        if (pagina === Object.keys(paginas).length - 2 && siguientePagina !== "" && tipoPagina === 'personajes') {
             console.log("buscando proxima pagina");
             dispatch(buscarProximaPaginaThunk());
         }
@@ -45,7 +45,7 @@ const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
     return <div className="paginacion">
         {/* Para decrementar Pagina puedo optar por la solucion trivial ya que no necesito recargar nuevos personajes. */}
         <button disabled={pagina === 0} className={"primary"} onClick={()=> dispatch(decrementarPagina(tipoPagina))}>Anterior</button>
-        <button disabled={pagina === Object.keys(paginas).length -1} className={"primary"} onClick={()=> handleIncrementarPagina()}>Siguiente</button>
+        <button disabled={pagina === Object.keys(paginas).length - 1 || Object.keys(paginas).length === 0} className={"primary"} onClick={()=> handleIncrementarPagina()}>Siguiente</button>
     </div>
 }
 

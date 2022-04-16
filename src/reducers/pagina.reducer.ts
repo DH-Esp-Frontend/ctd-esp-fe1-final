@@ -2,13 +2,13 @@ import { Reducer } from "@reduxjs/toolkit";
 import { PaginaAction } from "../actions/pagina.action";
 
 export interface PaginaState {
-    pagina: number;
-    paginaFav: number;
+    personajes: number;
+    favoritos: number;
 }
 
 const initialState: PaginaState = {
-    pagina: 0,
-    paginaFav: 0
+    personajes: 0,
+    favoritos: 0
 };
 
 export const paginaReducer: Reducer<PaginaState, PaginaAction> = (state = initialState, action): PaginaState => {
@@ -26,7 +26,8 @@ export const paginaReducer: Reducer<PaginaState, PaginaAction> = (state = initia
         case "RESETEAR_PAGINAS":
             return {
                 ...state,
-                pagina: 0
+                personajes: 0,
+                favoritos: 0,
             };
         default:
             return state;

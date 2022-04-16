@@ -2,12 +2,12 @@ import { Action, ActionCreator } from '@reduxjs/toolkit';
 
 export interface IncrementarPaginaAction extends Action {
     type: 'SIGUIENTE_PAGINA',
-    tipoPagina: 'pagina' | 'paginaFav'
+    tipoPagina: 'personajes' | 'favoritos'
 }
 
 export interface DecrementarPaginaAction extends Action {
     type: 'ANTERIOR_PAGINA',
-    tipoPagina: 'pagina' | 'paginaFav'
+    tipoPagina: 'personajes' | 'favoritos'
 }
 
 export interface ResetearPaginaAction extends Action {
@@ -17,14 +17,14 @@ export interface ResetearPaginaAction extends Action {
 
 export type PaginaAction = IncrementarPaginaAction | DecrementarPaginaAction | ResetearPaginaAction;
 
-export const incrementarPagina: ActionCreator<IncrementarPaginaAction> = (tipo: 'pagina'|'paginaFav') => {
+export const incrementarPagina: ActionCreator<IncrementarPaginaAction> = (tipo: 'personajes'|'favoritos') => {
     return {
         type: 'SIGUIENTE_PAGINA',
         tipoPagina: tipo
     }
 }
 
-export const decrementarPagina: ActionCreator<DecrementarPaginaAction> =  (tipo: 'pagina'|'paginaFav') => {
+export const decrementarPagina: ActionCreator<DecrementarPaginaAction> =  (tipo: 'personajes'|'favoritos') => {
     return {
         type: 'ANTERIOR_PAGINA',
         tipoPagina: tipo

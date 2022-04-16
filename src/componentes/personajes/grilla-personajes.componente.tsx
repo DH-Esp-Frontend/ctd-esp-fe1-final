@@ -1,10 +1,8 @@
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from 'react-redux';
 import { IRootState } from '../../store/store';
-import { buscarPersonajesThunk } from '../../actions/personaje.actions';
-import { useDispatch } from 'react-redux';
 /**
  * 
  * Grilla de personajes para la pagina de inicio
@@ -18,14 +16,13 @@ import { useDispatch } from 'react-redux';
 export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
 interface GrillaProps {
-    tipo: 'paginas' | 'favoritosPaginas';
+    tipo: 'personajesPaginas' | 'favoritosPaginas';
 }
 
 const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
 
-    const dispatch = useDispatch();
     const estado = useSelector(state => state.personajes);
-    const {pagina} = useSelector(state => state.pagina);
+    const {personajes,favoritos} = useSelector(state => state.pagina);
 
     const status = estado.status;
     const tipoPaginas = estado[tipo]
@@ -35,9 +32,9 @@ const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
 
     if (!tipoPaginas || tipoPaginas.length === 0) return <div></div>
     
-    const personajes_en_pagina = tipoPaginas.find((tipoPaginas) => tipoPaginas.id === pagina);
+    const personajes_en_pagina = tipoPaginas.find((tipoPaginas) => tipoPaginas.id === (tipo === 'personajesPaginas' ? personajes : favoritos));
     return <div className="grilla-personajes">
-       {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map(personaje => <TarjetaPersonaje personaje={personaje}/>)}
+       {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map(personaje => <TarjetaPersonaje personaje={personaje} key={'Personaje_' + personaje.id}/>)}
     </div>
 }
  

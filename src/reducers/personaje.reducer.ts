@@ -7,7 +7,7 @@ import { paginarRespuesta } from "../utils/paginarRespuesta";
 export interface PersonajeState {
     busqueda: string;
     personajes: Personaje[];
-    paginas: Pagina[];
+    personajesPaginas: Pagina[];
     siguientePagina: string,
     status: "LOADING" | "SUCCESS" | "ERROR";
     error: string | null;
@@ -19,7 +19,7 @@ export interface PersonajeState {
 const initialState: PersonajeState = {
     busqueda: "",
     personajes: [],
-    paginas: [],
+    personajesPaginas: [],
     siguientePagina: "",
     status: "SUCCESS",
     error: null,
@@ -40,7 +40,7 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
             return {
                 ...state,
                 personajes: action.personajes,
-                paginas: paginarRespuesta(action.personajes),
+                personajesPaginas: paginarRespuesta(action.personajes),
                 siguientePagina: action.siguientePagina,
                 status: "SUCCESS"
             };
@@ -54,7 +54,7 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
             return {
                 ...state,
                 personajes: [...state.personajes, ...action.personajes],
-                paginas: paginarRespuesta([...state.personajes, ...action.personajes]),
+                personajesPaginas: paginarRespuesta([...state.personajes, ...action.personajes]),
                 siguientePagina: action.siguientePagina,
                 status: "SUCCESS"
             };
