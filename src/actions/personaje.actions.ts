@@ -1,7 +1,5 @@
 import { Action, ActionCreator, ThunkAction } from '@reduxjs/toolkit';
-import { type } from 'os';
-import { useDispatch } from 'react-redux';
-import { buscarPersonajesAPI } from '../services/personaje.services';
+import { buscarPersonajesPorNombreAPI, buscarPersonajesPorPaginaAPI } from '../services/personaje.services';
 import { IRootState } from '../store/store';
 import Personaje  from '../types/personaje.type';
 
@@ -11,7 +9,8 @@ export interface BuscarPersonajesAction extends Action {
 }
 
 export interface BuscarPersonajesSuccessAction extends Action {
-    type: 'BUSCAR_PERSONAJES_SUCCESS',
+    type: 'BUSCAR_PERSONAJES_SUCCESS' | 'BUSCAR_PROXIMA_PAGINA_SUCCESS',
+    siguientePagina: string,
     personajes: Personaje[]
 }
 
@@ -20,7 +19,13 @@ export interface BuscarPersonajesErrorAction extends Action {
     error: string
 }
 
-export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction;
+export interface BuscarProximaPaginaAction extends Action {
+    type: 'BUSCAR_PROXIMA_PAGINA',
+}
+
+
+
+export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction;
 
 interface BuscarPersonajesThunkAction extends ThunkAction<void, IRootState, unknown, PersonajeAction> {};
 
@@ -31,9 +36,10 @@ const buscarPersonajes: ActionCreator<BuscarPersonajesAction> = (name: string) =
     }
 }
 
-const buscarPersonajesSuccess: ActionCreator<BuscarPersonajesSuccessAction> = (personajes: Personaje[]) => {
+const buscarPersonajesSuccess: ActionCreator<BuscarPersonajesSuccessAction> = (personajes: Personaje[], siguientePagina:string) => {
     return {
         type: 'BUSCAR_PERSONAJES_SUCCESS',
+        siguientePagina: siguientePagina,
         personajes: personajes
     }
 }
@@ -45,18 +51,44 @@ const buscarPersonajesError: ActionCreator<BuscarPersonajesErrorAction> = (error
     }
 }
 
+export const buscarProximaPagina: ActionCreator<BuscarProximaPaginaAction> = () => {
+    return {
+        type: 'BUSCAR_PROXIMA_PAGINA',
+    }
+}
+const buscarProximaPaginaSuccess: ActionCreator<BuscarPersonajesSuccessAction> = (personajes: Personaje[], siguientePagina:string) => {
+    return {
+        type: 'BUSCAR_PROXIMA_PAGINA_SUCCESS',
+        siguientePagina: siguientePagina,
+        personajes: personajes
+    }
+}
 
 export const buscarPersonajesThunk = (name: string): BuscarPersonajesThunkAction => {
     return async (dispatch, getState) => {
         if (name.length > 2 || name.length === 0) { 
             dispatch(buscarPersonajes(name));
             try {
-                const personajes = await buscarPersonajesAPI(name);
-                dispatch(buscarPersonajesSuccess(personajes));
+                const respuesta = await buscarPersonajesPorNombreAPI(name);
+                dispatch(buscarPersonajesSuccess(respuesta.personajes, respuesta.siguientePagina));
             } catch (error) {
                 dispatch(buscarPersonajesError(error));
             }
         }
     }
 }
+
+export const buscarProximaPaginaThunk = (): BuscarPersonajesThunkAction => {
+    return async (dispatch, getState) => {
+        const { siguientePagina } = getState().personajes;
+        if (siguientePagina !== "") {
+            try {
+                const respuesta = await buscarPersonajesPorPaginaAPI( siguientePagina);
+                dispatch(buscarProximaPaginaSuccess(respuesta.personajes, respuesta.siguientePagina));
+            } catch (error) {
+                dispatch(buscarPersonajesError(error));
+            }
+        }
+    }
+} 
 

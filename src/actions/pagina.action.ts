@@ -1,7 +1,4 @@
-import { Action, ActionCreator, ThunkAction } from '@reduxjs/toolkit';
-import { buscarPersonajesAPI } from '../services/personaje.services';
-import { IRootState } from '../store/store';
-import Personaje  from '../types/personaje.type';
+import { Action, ActionCreator } from '@reduxjs/toolkit';
 
 export interface IncrementarPaginaAction extends Action {
     type: 'SIGUIENTE_PAGINA',

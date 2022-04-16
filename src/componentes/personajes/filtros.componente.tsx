@@ -1,5 +1,5 @@
 import './filtros.css';
-import React, {FC, HtmlHTMLAttributes} from 'react';
+import React, {FC} from 'react';
 import { useDispatch } from 'react-redux';
 import {buscarPersonajesThunk} from '../../actions/personaje.actions';
 import { resetearPagina } from '../../actions/pagina.action';

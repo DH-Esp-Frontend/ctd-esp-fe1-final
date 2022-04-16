@@ -1,9 +1,10 @@
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from 'react-redux';
 import { IRootState } from '../../store/store';
-
+import { buscarPersonajesThunk } from '../../actions/personaje.actions';
+import { useDispatch } from 'react-redux';
 /**
  * 
  * Grilla de personajes para la pagina de inicio
@@ -18,13 +19,21 @@ export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
 const GrillaPersonajes:FC = () => {
 
-    const {personajes, status} = useSelector(state => state.personajes);
+    const dispatch = useDispatch();
+    const {paginas, status} = useSelector(state => state.personajes);
     const {pagina} = useSelector(state => state.pagina);
 
+    // Carga incial de personajes
+    useEffect(() => {
+        dispatch(buscarPersonajesThunk(''));
+    }, []);
+
     if (status === 'LOADING') return <div>Cargando...</div>
-    if (!personajes || personajes.length === 0) return <div></div>
+    if (status === 'ERROR') return <div>Error en la carga de personajes.</div>
     
-    const personajes_en_pagina = personajes.find((personajes) => personajes.id === pagina);
+    if (!paginas || paginas.length === 0) return <div></div>
+    
+    const personajes_en_pagina = paginas.find((paginas) => paginas.id === pagina);
     return <div className="grilla-personajes">
        {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map(personaje => <TarjetaPersonaje personaje={personaje}/>)}
     </div>
