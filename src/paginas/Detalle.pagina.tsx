@@ -1,8 +1,8 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
 import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
-import { useSelector } from "../componentes/personajes/grilla-personajes.componente";
 import { useDispatch } from "react-redux";
+import { IRootState,useSelector } from "../store/store";
 /**
  * Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
  * 
@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 
 const PaginaDetalle = () => {
     const dispatch = useDispatch();
-    const {personajeDetalle,favoritosId} = useSelector(state  => state.personajes)
+    const {personajeDetalle,favoritosId} = useSelector((state: IRootState)  => state.personajes)
     const esFavorito = personajeDetalle && favoritosId.includes(personajeDetalle.id);
 
     const handleFavorito = () => {

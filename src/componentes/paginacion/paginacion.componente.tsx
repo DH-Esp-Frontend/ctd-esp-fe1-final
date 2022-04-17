@@ -1,9 +1,10 @@
-import { useSelector } from '../personajes/grilla-personajes.componente';
 import './paginacion.css';
 import { incrementarPagina, decrementarPagina } from '../../actions/pagina.action';
 import { buscarProximaPaginaThunk } from '../../actions/personaje.actions';
 import { useDispatch } from 'react-redux';
 import { FC } from 'react';
+import { IRootState,useSelector } from '../../store/store';
+
 /**
  * Componente que contiene los botones para paginar
  * Gestiona el estado del número de página. Tanto de favoritos como de la página principal.
@@ -19,8 +20,8 @@ interface PaginacionProps  {
 
 const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
     // Accedo al estado entero del Store con useSelector, para poder acceder dinamicamente a las propiedades del mismo
-    const personajeEstado = useSelector(state => state.personajes);
-    const paginaState = useSelector(state => state.pagina);
+    const personajeEstado = useSelector((state:IRootState) => state.personajes);
+    const paginaState = useSelector((state:IRootState) => state.pagina);
     const dispatch = useDispatch(); 
     
     

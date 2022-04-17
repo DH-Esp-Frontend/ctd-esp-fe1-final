@@ -1,10 +1,10 @@
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
 import React, {FC} from 'react';
 import Paginacion from "../componentes/paginacion/paginacion.componente";
-import { TypedUseSelectorHook, useDispatch, useSelector as useSelectorRedux } from "react-redux";
+import { useDispatch} from "react-redux";
 import { resetearPagina } from "../actions/pagina.action";
 import { limpiarFavoritos } from "../actions/personaje.actions";
-import { IRootState } from "../store/store";
+import { IRootState,useSelector } from "../store/store";
 
 /**
  * Esta es la pagina de favoritos. Aquí se deberan ver todos los personajes marcados como favoritos
@@ -16,7 +16,6 @@ import { IRootState } from "../store/store";
  */
 
 const PaginaFavoritos: FC = () => {
-    const useSelector: TypedUseSelectorHook<IRootState> = useSelectorRedux;
     
     const {favoritosId} = useSelector((state:IRootState) => state.personajes);
     const dispatch = useDispatch();

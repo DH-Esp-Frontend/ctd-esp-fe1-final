@@ -1,8 +1,7 @@
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
 import React, {FC} from 'react';
-import {TypedUseSelectorHook, useSelector as useReduxSelector} from 'react-redux';
-import { IRootState } from '../../store/store';
+import { IRootState, useSelector } from '../../store/store';
 
 /**
  * 
@@ -14,7 +13,6 @@ import { IRootState } from '../../store/store';
  * @returns un JSX element 
  */
 
-export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector;
 
 interface GrillaProps {
     tipo: 'personajesPaginas' | 'favoritosPaginas';
@@ -22,7 +20,7 @@ interface GrillaProps {
 
 const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
 
-    const estado = useSelector(state => state.personajes);
+    const estado = useSelector((state:IRootState) => state.personajes);
     const {personajes,favoritos} = useSelector(state => state.pagina);
 
     const status = estado.status;

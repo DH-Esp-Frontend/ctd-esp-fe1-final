@@ -1,8 +1,8 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
 import React, { FC } from 'react';
-import {TypedUseSelectorHook, useDispatch, useSelector as useSelectorRedux } from 'react-redux';
-import { IRootState } from '../../store/store';
+import { useDispatch} from 'react-redux';
+import { IRootState,  useSelector } from '../../store/store';
 import Personaje from '../../types/personaje.type';
 import { useNavigate } from 'react-router-dom';
 import { verDetalleAction } from '../../actions/personaje.actions';
@@ -22,7 +22,6 @@ interface TarjetaPersonajeProps {
 
 const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonajeProps) => {
     
-    const useSelector: TypedUseSelectorHook<IRootState> = useSelectorRedux;
     const navigate = useNavigate();
     const {favoritos, favoritosId} = useSelector((state:IRootState) => state.personajes);
     const dispatch = useDispatch();
