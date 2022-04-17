@@ -21,7 +21,6 @@ import { buscarPersonajePorIdAPI } from "../services/personaje.services";
 
 const PaginaDetalle = () => {
     const {id} = useParams();
-    console.log(id);
     
     const {data, isLoading, error} = useQuery(['personaje',id], () => buscarPersonajePorIdAPI(id), {
         initialData: {
@@ -46,7 +45,7 @@ const PaginaDetalle = () => {
         !esFavorito ? dispatch({type: 'AGREGAR_FAVORITO', personaje: data}) : dispatch({type: 'ELIMINAR_FAVORITO', personajeDetalle: data});
     }
     // if (isLoading || error) return <p className="error-texto">No hay un personaje Seleccionado </p>
-    if (error) return <p className="error-texto">No hay un personaje Seleccionado </p>
+    if (error) return <p className="error-texto">Error Buscando Personaje Seleccionado </p>
     if (isLoading) return <p className="error-texto">Cargando Personajes </p>
     
     return <div className="container">

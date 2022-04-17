@@ -34,7 +34,6 @@ const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
      * Para lograr un efecto similar al "scrolling infinito", cuando falten dos pagina para llegar al final, se recargaran nuevos personajes para la misma query, si es que hay más personajes.
      */
     const handleIncrementarPagina = () => {
-        console.log(pagina, siguientePagina);
         if (pagina === Object.keys(paginas).length - 2 && siguientePagina !== "" && tipoPagina === 'personajes') {
             dispatch(buscarProximaPaginaThunk());
         }

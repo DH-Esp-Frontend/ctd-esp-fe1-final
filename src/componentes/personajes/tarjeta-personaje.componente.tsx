@@ -28,7 +28,6 @@ const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonaj
     const esFavorito = favoritosId.includes(personaje.id);
     const handleFavorito = () => {
         !esFavorito ? dispatch({type: 'AGREGAR_FAVORITO', personaje: personaje}) : dispatch({type: 'ELIMINAR_FAVORITO', personaje: personaje});
-        console.log(favoritos);
     }
 
     const handleSelect = () => {

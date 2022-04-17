@@ -18,8 +18,8 @@ interface TarjetaEpisodioProps {
 }
 
 const TarjetaEpisodio: FC<TarjetaEpisodioProps>= ({episodio}:TarjetaEpisodioProps) => {
-
-    const {data, isLoading, error} = useQuery(['episode',episodio], () => getEpisode(episodio));
+    
+    const {data, isLoading, error} = useQuery(['episode',episodio.split('/').pop()], () => getEpisode(episodio));
     
     if (error) return <div className="tarjeta-episodio"><h4>Error Buscando informacion</h4></div> 
     return <div className="tarjeta-episodio">
