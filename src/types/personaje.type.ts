@@ -4,14 +4,14 @@ interface Personaje {
     id: number;
     name: string;
     image: string;
-    species: string;
-    episode: string[];
-    status: string;
-    origin: {
-        name: string;
-        url: string
-    };
-    gender: string;
+    // species: string;
+    // episode: string[];
+    // status: string;
+    // origin: {
+    //     name: string;
+    //     url: string
+    // };
+    // gender: string;
 }
 
 export default Personaje;

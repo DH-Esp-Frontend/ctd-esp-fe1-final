@@ -33,7 +33,7 @@ const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonaj
 
     const handleSelect = () => {
         dispatch(verDetalleAction(personaje))
-        navigate('/detalle')
+        navigate('/detalle/' + personaje.id);
     }
 
     return <div className="tarjeta-personaje" >

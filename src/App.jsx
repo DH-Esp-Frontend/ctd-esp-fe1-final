@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PaginaInicio />} />
           <Route path="favoritos" element={<PaginaFavoritos />} />
-          <Route path="detalle" element={
+          <Route path="detalle/:id" element={
             <QueryClientProvider client={queryClient}>
               <PaginaDetalle />
             </QueryClientProvider>

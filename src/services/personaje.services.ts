@@ -1,4 +1,4 @@
-import Respuesta from "../types/respuesta.type";
+import {Respuesta, RespuestaPersonaje} from "../types/respuesta.type";
 
 export const buscarPersonajesPorNombreAPI = async (name?: string): Promise<Respuesta> => {
     let params = "?";
@@ -24,4 +24,9 @@ export const buscarPersonajesPorPaginaAPI = async (pagina: string): Promise<Resp
                 siguientePagina: data.info.next || ""
             }
         });
+};
+
+export const buscarPersonajePorIdAPI = async (id: string | undefined): Promise<RespuestaPersonaje> => {
+    return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        .then(response => response.json())
 };
