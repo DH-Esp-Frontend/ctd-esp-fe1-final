@@ -22,6 +22,12 @@
     margin-bottom: 10px;
 }
 
+.error-texto {
+    font-size: 25px;
+    color: black;
+    text-align: center;
+
+}
 
 .detalle-header-texto p:nth-child(1){
     font-size: 32px;

@@ -14,6 +14,7 @@ export interface PersonajeState {
     favoritos: Personaje[];
     favoritosPaginas: Pagina[];
     favoritosId: number[];
+    personajeDetalle: Personaje | null;
 }
 
 const initialState: PersonajeState = {
@@ -25,7 +26,8 @@ const initialState: PersonajeState = {
     error: null,
     favoritos: [],
     favoritosPaginas: [],
-    favoritosId: []
+    favoritosId: [],
+    personajeDetalle: null
 };
 
 export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state = initialState, action): PersonajeState => {
@@ -78,6 +80,11 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
                 favoritos: [],
                 favoritosPaginas: [],
                 favoritosId: []
+            }
+        case "VER_DETALLE":
+            return {
+                ...state,
+                personajeDetalle: action.personaje
             }
         default:
             return state;

@@ -34,8 +34,11 @@ export interface EliminarFavoritoAction extends Action {
 export interface LimpiarFavoritosAction extends Action {
     type: 'LIMPIAR_FAVORITOS',
 }
-
-export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction | AgregarFavoritoAction | EliminarFavoritoAction | LimpiarFavoritosAction;
+export interface VerDetalleAction extends Action {
+    type: 'VER_DETALLE',
+    personaje: Personaje
+}
+export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction | AgregarFavoritoAction | EliminarFavoritoAction | LimpiarFavoritosAction | VerDetalleAction;
 
 interface BuscarPersonajesThunkAction extends ThunkAction<void, IRootState, unknown, PersonajeAction> {};
 
@@ -90,6 +93,13 @@ export const limpiarFavoritos: ActionCreator<LimpiarFavoritosAction> = () => {
 export const buscarProximaPagina: ActionCreator<BuscarProximaPaginaAction> = () => {
     return {
         type: 'BUSCAR_PROXIMA_PAGINA',
+    }
+}
+
+export const verDetalleAction: ActionCreator<VerDetalleAction> = (personaje: Personaje) => {
+    return {
+        type: "VER_DETALLE",
+        personaje: personaje
     }
 }
 

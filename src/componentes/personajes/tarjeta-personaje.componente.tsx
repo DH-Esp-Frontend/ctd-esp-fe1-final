@@ -4,6 +4,8 @@ import React, { FC } from 'react';
 import {TypedUseSelectorHook, useDispatch, useSelector as useSelectorRedux } from 'react-redux';
 import { IRootState } from '../../store/store';
 import Personaje from '../../types/personaje.type';
+import { useNavigate } from 'react-router-dom';
+import { verDetalleAction } from '../../actions/personaje.actions';
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
  * 
@@ -13,14 +15,15 @@ import Personaje from '../../types/personaje.type';
  * @returns un JSX element 
  */
 
-const useSelector: TypedUseSelectorHook<IRootState> = useSelectorRedux;
 
 interface TarjetaPersonajeProps {
     personaje: Personaje;
 }
 
 const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonajeProps) => {
-
+    
+    const useSelector: TypedUseSelectorHook<IRootState> = useSelectorRedux;
+    const navigate = useNavigate();
     const {favoritos, favoritosId} = useSelector((state:IRootState) => state.personajes);
     const dispatch = useDispatch();
     const esFavorito = favoritosId.includes(personaje.id);
@@ -29,7 +32,12 @@ const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonaj
         console.log(favoritos);
     }
 
-    return <div className="tarjeta-personaje" >
+    const handleSelect = () => {
+        dispatch(verDetalleAction(personaje))
+        navigate('/detalle')
+    }
+
+    return <div className="tarjeta-personaje" onClick={handleSelect}>
         <img src={personaje.image} alt={personaje.name}/>
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>

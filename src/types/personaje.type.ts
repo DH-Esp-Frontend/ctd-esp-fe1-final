@@ -7,6 +7,11 @@ interface Personaje {
     species: string;
     episode: string[];
     status: string;
+    origin: {
+        name: string;
+        url: string
+    };
+    gender: string;
 }
 
 export default Personaje;
