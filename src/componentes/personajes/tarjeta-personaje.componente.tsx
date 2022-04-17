@@ -36,8 +36,8 @@ const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonaj
         navigate('/detalle')
     }
 
-    return <div className="tarjeta-personaje" onClick={handleSelect}>
-        <img src={personaje.image} alt={personaje.name}/>
+    return <div className="tarjeta-personaje" >
+        <img src={personaje.image} alt={personaje.name} onClick={handleSelect}/>
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>
             <BotonFavorito esFavorito={esFavorito} onClick={handleFavorito} />
