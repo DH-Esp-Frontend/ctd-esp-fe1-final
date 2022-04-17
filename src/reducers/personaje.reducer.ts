@@ -72,7 +72,13 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
                 favoritosPaginas: paginarRespuesta(state.favoritos.filter(personaje => personaje.id !== action.personaje.id)),
                 favoritosId: state.favoritosId.filter(id => id !== action.personaje.id)
             };
-
+        case "LIMPIAR_FAVORITOS":
+            return {
+                ...state,
+                favoritos: [],
+                favoritosPaginas: [],
+                favoritosId: []
+            }
         default:
             return state;
     }

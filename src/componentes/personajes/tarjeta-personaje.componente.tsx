@@ -21,7 +21,7 @@ interface TarjetaPersonajeProps {
 
 const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonajeProps) => {
 
-    const {favoritos, favoritosId} = useSelector((state) => state.personajes);
+    const {favoritos, favoritosId} = useSelector((state:IRootState) => state.personajes);
     const dispatch = useDispatch();
     const esFavorito = favoritosId.includes(personaje.id);
     const handleFavorito = () => {
