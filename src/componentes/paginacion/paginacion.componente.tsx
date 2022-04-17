@@ -3,13 +3,12 @@ import './paginacion.css';
 import { incrementarPagina, decrementarPagina } from '../../actions/pagina.action';
 import { buscarProximaPaginaThunk } from '../../actions/personaje.actions';
 import { useDispatch } from 'react-redux';
-import Pagina from '../../types/pagina.type';
 import { FC } from 'react';
 /**
  * Componente que contiene los botones para paginar
+ * Gestiona el estado del número de página. Tanto de favoritos como de la página principal.
  * 
- * Deberás agregar las propiedades necesarias para que funcione correctamente
- * 
+ * @param {string} tipoPagina Declara el contexto en el que tiene que modificar las paginas, ya sea la pagina de favoritos o la principal.  
  * 
  * @returns un JSX element 
  */
@@ -19,6 +18,7 @@ interface PaginacionProps  {
 }
 
 const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
+    // Accedo al estado entero del Store con useSelector, para poder acceder dinamicamente a las propiedades del mismo
     const personajeEstado = useSelector(state => state.personajes);
     const paginaState = useSelector(state => state.pagina);
     const dispatch = useDispatch(); 
@@ -31,19 +31,16 @@ const Paginacion: FC<PaginacionProps> = ({tipoPagina}: PaginacionProps) => {
     /**
      * Función que se ejecuta al hacer click en el botón de siguiente
      * Para lograr un efecto similar al "scrolling infinito", cuando falten dos pagina para llegar al final, se recargaran nuevos personajes para la misma query, si es que hay más personajes.
-     * 
      */
     const handleIncrementarPagina = () => {
         console.log(pagina, siguientePagina);
         if (pagina === Object.keys(paginas).length - 2 && siguientePagina !== "" && tipoPagina === 'personajes') {
-            console.log("buscando proxima pagina");
             dispatch(buscarProximaPaginaThunk());
         }
         dispatch(incrementarPagina(tipoPagina));
     };
 
     return <div className="paginacion">
-        {/* Para decrementar Pagina puedo optar por la solucion trivial ya que no necesito recargar nuevos personajes. */}
         <button disabled={pagina === 0} className={"primary"} onClick={()=> dispatch(decrementarPagina(tipoPagina))}>Anterior</button>
         <button disabled={pagina === Object.keys(paginas).length - 1 || Object.keys(paginas).length === 0} className={"primary"} onClick={()=> handleIncrementarPagina()}>Siguiente</button>
     </div>

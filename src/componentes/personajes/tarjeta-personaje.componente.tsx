@@ -1,9 +1,9 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
-import React, { FC, useEffect, useState } from 'react';
-import Personaje from '../../types/personaje.type';
+import React, { FC } from 'react';
+import {TypedUseSelectorHook, useDispatch, useSelector as useSelectorRedux } from 'react-redux';
 import { IRootState } from '../../store/store';
-import { connect, ConnectedProps, useDispatch, useSelector as useSelectorRedux } from 'react-redux';
+import Personaje from '../../types/personaje.type';
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
  * 
@@ -13,8 +13,13 @@ import { connect, ConnectedProps, useDispatch, useSelector as useSelectorRedux }
  * @returns un JSX element 
  */
 
-const useSelector = useSelectorRedux;
-const TarjetaPersonaje = ({personaje}) => {
+const useSelector: TypedUseSelectorHook<IRootState> = useSelectorRedux;
+
+interface TarjetaPersonajeProps {
+    personaje: Personaje;
+}
+
+const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonajeProps) => {
 
     const {favoritos, favoritosId} = useSelector((state) => state.personajes);
     const dispatch = useDispatch();
@@ -24,7 +29,7 @@ const TarjetaPersonaje = ({personaje}) => {
         console.log(favoritos);
     }
 
-    return <div className="tarjeta-personaje" key={"personaje_" + personaje.id}>
+    return <div className="tarjeta-personaje" >
         <img src={personaje.image} alt={personaje.name}/>
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>

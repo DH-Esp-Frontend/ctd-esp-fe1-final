@@ -3,6 +3,7 @@ import TarjetaPersonaje from './tarjeta-personaje.componente';
 import React, {FC} from 'react';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from 'react-redux';
 import { IRootState } from '../../store/store';
+
 /**
  * 
  * Grilla de personajes para la pagina de inicio
@@ -34,7 +35,7 @@ const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
     
     const personajes_en_pagina = tipoPaginas.find((tipoPaginas) => tipoPaginas.id === (tipo === 'personajesPaginas' ? personajes : favoritos));
     return <div className="grilla-personajes">
-       {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map(personaje => <TarjetaPersonaje personaje={personaje} key={'Personaje_' + personaje.id}/>)}
+       {personajes_en_pagina && personajes_en_pagina.personajesEnPagina.map((personaje) => <TarjetaPersonaje personaje={personaje}  key={'Personaje_' + personaje.id}/>)}
     </div>
 }
  
