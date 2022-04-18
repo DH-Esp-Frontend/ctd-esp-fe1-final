@@ -4,7 +4,7 @@ import React, {FC} from 'react';
 import { IRootState, useSelector } from '../../store/store';
 
 
-interface GrillaProps {
+export interface TipoPaginaProps {
     tipo: 'personajes' | 'favoritos';
 }
 
@@ -16,7 +16,7 @@ interface GrillaProps {
  * @param {'personajes' | 'favoritos'} tipo indica si se muestran los favoritos o la pagina principal
  * @returns un JSX element 
  */
-const GrillaPersonajes: FC<GrillaProps>= ({tipo}: GrillaProps) => {
+const GrillaPersonajes: FC<TipoPaginaProps>= ({tipo}: TipoPaginaProps) => {
     // Accedo a variables del estado desde el store.
     const {status, favoritosPaginas, personajesPaginas} = useSelector((state:IRootState) => state.personajes);
     // Accedo al numero de pagina a mostrar para la pagina principal o favoritos.

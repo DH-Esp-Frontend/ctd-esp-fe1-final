@@ -27,7 +27,7 @@ const PaginaFavoritos: FC = () => {
             <h3>Personajes Favoritos</h3>
             <button className={(favoritosId.length === 0)? "primary" : "danger"} disabled={(favoritosId.length === 0)} onClick={handleLimpiar}>Limpiar Favoritos</button>
         </div>
-        <Paginacion tipoPagina = 'favoritos'/>
+        <Paginacion tipo = 'favoritos'/>
         <GrillaPersonajes tipo="favoritos"/>
     </div>
 }

@@ -42,9 +42,9 @@ const PaginaInicio: FC = () => {
             <button className="danger" onClick={handleClick}>Limpiar Filtros</button>
         </div>
         <Filtros inputRef = {inputRef}/>
-        <Paginacion tipoPagina= "personajes"/>
+        <Paginacion tipo= "personajes"/>
         <GrillaPersonajes tipo="personajes"/>
-        <Paginacion tipoPagina= "personajes"/>
+        <Paginacion tipo= "personajes"/>
     </div>
 }
 

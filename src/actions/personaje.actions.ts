@@ -94,7 +94,7 @@ export const buscarProximaPagina: ActionCreator<BuscarProximaPaginaAction> = () 
 }
 
 export const buscarPersonajesThunk = (name: string): BuscarPersonajesThunkAction => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         if (name.length > 2 || name.length === 0) { 
             dispatch(buscarPersonajes(name));
             try {
