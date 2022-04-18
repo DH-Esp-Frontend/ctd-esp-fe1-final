@@ -14,21 +14,21 @@ import { resetearPagina } from "../actions/pagina.action";
  * 
  * @returns la pagina de inicio
  */
-
-
 const PaginaInicio: FC = () => {
     // Carga incial de personajes
     const dispatch = useDispatch();
     
+    // useEffect para la carga inicial
     useEffect(() => {
         dispatch(buscarPersonajesThunk(''));
         dispatch(resetearPagina())
     }, []);
 
 
-    // Genero referencia al input de la barra de busqueda y comportamiento del onCLick de Reset 
+    // Genero referencia al input de la barra de busqueda y comportamiento del onCLick de limpiar filtros 
     const inputRef = useRef<HTMLInputElement>(null);
 
+    // Funcion que se ejecuta al hacer click en el boton de limpiar filtros
     const handleClick = () => {
         if (inputRef.current) {
             inputRef.current.value = '';
@@ -43,7 +43,7 @@ const PaginaInicio: FC = () => {
         </div>
         <Filtros inputRef = {inputRef}/>
         <Paginacion tipoPagina= "personajes"/>
-        <GrillaPersonajes tipo="personajesPaginas"/>
+        <GrillaPersonajes tipo="personajes"/>
         <Paginacion tipoPagina= "personajes"/>
     </div>
 }

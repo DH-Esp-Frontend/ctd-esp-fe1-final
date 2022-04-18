@@ -31,6 +31,7 @@ const initialState: PersonajeState = {
 };
 
 export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state = initialState, action): PersonajeState => {
+
     switch (action.type) {
         case "BUSCAR_PERSONAJES":
             return {
@@ -80,11 +81,6 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
                 favoritos: [],
                 favoritosPaginas: [],
                 favoritosId: []
-            }
-        case "VER_DETALLE":
-            return {
-                ...state,
-                personajeDetalle: action.personaje
             }
         default:
             return state;

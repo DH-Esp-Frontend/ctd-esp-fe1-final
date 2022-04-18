@@ -14,7 +14,6 @@ interface filtrosProps {
  * @param inputRef  referencia a la barra de busqueda. Esto nos permite reiniciar los valores en el onCLick del boton de reseteo
  * @returns <FC>
  */
-
 const Filtros:FC<filtrosProps> = ({inputRef}: filtrosProps) => {
 
     const dispatch = useDispatch(); 

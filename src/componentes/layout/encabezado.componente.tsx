@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {Link} from "react-router-dom";
 import './encabezado.css';
 
@@ -8,7 +9,7 @@ import './encabezado.css';
  *
  * @returns {JSX.Element}
  */
-const Encabezado = () => {
+const Encabezado: FC = () => {
 
     return <header>
             <div>

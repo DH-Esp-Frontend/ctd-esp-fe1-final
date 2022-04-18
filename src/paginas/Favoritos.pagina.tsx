@@ -14,7 +14,6 @@ import { IRootState,useSelector } from "../store/store";
  * 
  * @returns la pagina de favoritos
  */
-
 const PaginaFavoritos: FC = () => {
     
     const {favoritosId} = useSelector((state:IRootState) => state.personajes);
@@ -29,7 +28,7 @@ const PaginaFavoritos: FC = () => {
             <button className={(favoritosId.length === 0)? "primary" : "danger"} disabled={(favoritosId.length === 0)} onClick={handleLimpiar}>Limpiar Favoritos</button>
         </div>
         <Paginacion tipoPagina = 'favoritos'/>
-        <GrillaPersonajes tipo="favoritosPaginas"/>
+        <GrillaPersonajes tipo="favoritos"/>
     </div>
 }
 
