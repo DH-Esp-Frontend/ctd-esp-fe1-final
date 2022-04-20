@@ -7,7 +7,6 @@ import Personaje from '../../types/personaje.type';
 import { useNavigate } from 'react-router-dom';
 import { agregarFavorito, buscarPersonajePorIdThunk, eliminarFavorito } from '../../actions/personaje.actions';
 import { decrementarPagina } from '../../actions/pagina.action';
-import { buscarPersonajePorIdAPI } from '../../services/personaje.services';
 
 
 interface TarjetaPersonajeProps {

@@ -12,20 +12,20 @@ const initialState: EpisodioState = {
 
 export const episodioReducer: Reducer<EpisodioState, EpisodioAction> = (state = initialState, action): EpisodioState => {
     switch (action.type) {
-        case "BUSCAR_EPISODIO":
+        case "BUSCAR_EPISODIOS":
             return {
                 ...state,
-                episodios: [...state.episodios.filter((episodio:Episodio) => episodio.id !== action.id, {id: action.id, name: 'Cargando...', episode: 'Cargando...', air_date: 'Cargando...'})],
+                episodios: action.ids.map((id) => ({id: id, name: 'Cargando...',episode:'S-E-',air_date:'--/----'})),
             };
-        case "BUSCAR_EPISODIO_SUCCESS":
+        case "BUSCAR_EPISODIOS_SUCCESS":
             return {
                 ...state,
-                episodios: [...state.episodios.filter((episodio:Episodio) => episodio.id !== action.episodio.id), action.episodio],
+                episodios: action.episodios,
             };
-        case "BUSCAR_EPISODIO_ERROR":
+        case "BUSCAR_EPISODIOS_ERROR":
             return {
                 ...state,
-                episodios: [...state.episodios.filter((episodio:Episodio) => episodio.id !== action.id), {id: action.id, name: 'Error Buscando.', episode: 'S- E-', air_date: '--/--/----'}],      
+                episodios: [],      
             };
         default:
             return state;

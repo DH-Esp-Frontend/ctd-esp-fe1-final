@@ -2,7 +2,7 @@ import { Action, ActionCreator, ThunkAction } from '@reduxjs/toolkit';
 import { buscarPersonajePorIdAPI, buscarPersonajesPorNombreAPI, buscarPersonajesPorPaginaAPI } from '../services/personaje.services';
 import { IRootState } from '../store/store';
 import Personaje, {PersonajeDetalle}  from '../types/personaje.type';
-import { buscarEpisodioThunk } from './episodio.action';
+import { buscarEpisodiosThunk } from './episodio.action';
 
 export interface BuscarPersonajesAction extends Action {
     type: 'BUSCAR_PERSONAJES',
@@ -139,10 +139,7 @@ export const buscarPersonajePorIdThunk = (id: number): BuscarPersonajesThunkActi
         try {
             const respuesta = await buscarPersonajePorIdAPI(id);
             dispatch(buscarPersonajePorIdSuccess(respuesta.personaje));
-            
-            respuesta.personaje.episode.forEach(episodio => {
-                dispatch(buscarEpisodioThunk(episodio.split('/').pop() || ''));
-            });
+            dispatch(buscarEpisodiosThunk(respuesta.personaje.episode));
         } catch (error) {
             dispatch(buscarPersonajePorIdError(error));
         }

@@ -19,8 +19,8 @@ const TarjetaEpisodio: FC<TarjetaEpisodioProps>= ({episodio}:TarjetaEpisodioProp
     const id = episodio.split('/').pop();
     const {episodios} = useSelector((state:IRootState) => state.episodios);
     
-    // Encuentro el episodio en el store usando el id. Como id obtenido del url es string, no valido el tipo de dato, y uso == en vez de ===
-    const data = episodios.find(episodio => episodio.id == id);
+    // Encuentro el episodio en el store usando el id.
+    const data = episodios?.find(episodio => episodio.id.toString() === id);
     
     // Retorno el template con la informacion del episodio.
     return <div className="tarjeta-episodio">

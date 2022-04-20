@@ -3,55 +3,56 @@ import { getEpisode } from '../services/episodio.services';
 import { IRootState } from '../store/store';
 import Episodio from '../types/episodio.type';
 
-export interface BuscarEpisodioAction extends Action {
-    type: 'BUSCAR_EPISODIO',
-    id: string;
+export interface BuscarEpisodiosAction extends Action {
+    type: 'BUSCAR_EPISODIOS',
+    ids: string[];
 }
 
-export interface BuscarEpisodioSuccesAction extends Action {
-    type: 'BUSCAR_EPISODIO_SUCCESS',
-    episodio: Episodio;
+export interface BuscarEpisodiosSuccesAction extends Action {
+    type: 'BUSCAR_EPISODIOS_SUCCESS',
+    episodios: Episodio[];
 }
 
-export interface BuscarEpisodioErrorAction extends Action {
-    type: 'BUSCAR_EPISODIO_ERROR',
-    id: string;
+export interface BuscarEpisodiosErrorAction extends Action {
+    type: 'BUSCAR_EPISODIOS_ERROR',
 }
 
-const buscarEpisodio: ActionCreator<BuscarEpisodioAction> = (id: string) => {
+const buscarEpisodios: ActionCreator<BuscarEpisodiosAction> = (ids: string[]) => {
     return {
-        type: 'BUSCAR_EPISODIO',
-        id: id
+        type: 'BUSCAR_EPISODIOS',
+        ids: ids
     }
 }
 
-const buscarEpisodioSucces: ActionCreator<BuscarEpisodioSuccesAction> = (episodio: Episodio) => {
+const buscarEpisodiosSucces: ActionCreator<BuscarEpisodiosSuccesAction> = (episodios: Episodio[]) => {
     return {
-        type: 'BUSCAR_EPISODIO_SUCCESS',
-        episodio: episodio
+        type: 'BUSCAR_EPISODIOS_SUCCESS',
+        episodios: episodios
     }
 }
 
-const buscarEpisodioError: ActionCreator<BuscarEpisodioErrorAction> = (id: string) => {
+const buscarEpisodiosError: ActionCreator<BuscarEpisodiosErrorAction> = () => {
     return {
-        type: 'BUSCAR_EPISODIO_ERROR',
-        id: id
+        type: 'BUSCAR_EPISODIOS_ERROR',
     }
 }
 
-export type EpisodioAction = BuscarEpisodioAction | BuscarEpisodioSuccesAction | BuscarEpisodioErrorAction;
+export type EpisodioAction = BuscarEpisodiosAction | BuscarEpisodiosSuccesAction | BuscarEpisodiosErrorAction;
 
 interface BuscarEpisodioThunkAction extends ThunkAction<void, IRootState, unknown, EpisodioAction> {};
 
 
-export const buscarEpisodioThunk = (episodio: string): BuscarEpisodioThunkAction => {
+export const buscarEpisodiosThunk = (episodios: string[]): BuscarEpisodioThunkAction => {
     return async (dispatch) => {
-        dispatch(buscarEpisodio(episodio));
+        const ids = episodios.map((e:string) => e.split('/').pop());
+        const idsString = ids.join(',');
+        dispatch(buscarEpisodios(ids));
         try {
-            const respuesta = await getEpisode(episodio);
-            dispatch(buscarEpisodioSucces(respuesta));
+            const respuesta = await getEpisode(idsString);
+            const ans = Array.isArray(respuesta) ? respuesta : [respuesta];
+            dispatch(buscarEpisodiosSucces(ans));
         } catch (error) {
-            dispatch(buscarEpisodioError(episodio));
+            dispatch(buscarEpisodiosError());
         }
     }
 }
