@@ -1,6 +1,6 @@
-import {Respuesta, RespuestaPersonaje} from "../types/respuesta.type";
+import {RespuestaPersonajes, RespuestaPersonaje} from "../types/respuesta.type";
 
-export const buscarPersonajesPorNombreAPI = async (name?: string): Promise<Respuesta> => {
+export const buscarPersonajesPorNombreAPI = async (name?: string): Promise<RespuestaPersonajes> => {
     let params = "?";
     if (name) {
         params += `name=${name}`;
@@ -15,7 +15,7 @@ export const buscarPersonajesPorNombreAPI = async (name?: string): Promise<Respu
         });
 };
 
-export const buscarPersonajesPorPaginaAPI = async (pagina: string): Promise<Respuesta> => {
+export const buscarPersonajesPorPaginaAPI = async (pagina: string): Promise<RespuestaPersonajes> => {
     return fetch(pagina)
         .then(response => response.json())
         .then(data => {
@@ -26,7 +26,12 @@ export const buscarPersonajesPorPaginaAPI = async (pagina: string): Promise<Resp
         });
 };
 
-export const buscarPersonajePorIdAPI = async (id: string | undefined): Promise<RespuestaPersonaje> => {
+export const buscarPersonajePorIdAPI = async (id: number): Promise<RespuestaPersonaje> => {
     return fetch(`https://rickandmortyapi.com/api/character/${id}`)
         .then(response => response.json())
+        .then(data => {
+            return {
+                personaje: data
+            }
+        });
 };

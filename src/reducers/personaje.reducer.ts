@@ -1,7 +1,7 @@
 import { Reducer } from "@reduxjs/toolkit";
 import { PersonajeAction } from "../actions/personaje.actions"; 
 import  Pagina from "../types/pagina.type";
-import Personaje from "../types/personaje.type";
+import Personaje, { PersonajeDetalle } from "../types/personaje.type";
 import { paginarRespuesta } from "../utils/paginarRespuesta";
 
 export interface PersonajeState {
@@ -14,7 +14,7 @@ export interface PersonajeState {
     favoritos: Personaje[];
     favoritosPaginas: Pagina[];
     favoritosId: number[];
-    personajeDetalle: Personaje | null;
+    personajeDetalle: PersonajeDetalle | null;
 }
 
 const initialState: PersonajeState = {
@@ -82,6 +82,12 @@ export const personajeReducer: Reducer<PersonajeState, PersonajeAction> = (state
                 favoritosPaginas: [],
                 favoritosId: []
             }
+        case "BUSCAR_PERSONAJE_SUCCESS":
+            return {
+                ...state,
+                personajeDetalle: action.personajeDetalle
+            };
+
         default:
             return state;
     }

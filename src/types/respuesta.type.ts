@@ -1,25 +1,17 @@
-import Personaje from "./personaje.type";
+import Episodio from "./episodio.type";
+import Personaje, { PersonajeDetalle } from "./personaje.type";
 
 // Respuesta es usado para almacenar metadata de la respuesta de la API.
 // Al guardar esta informacion, se puede lograr una experiencia de usuario mas agradable, al hacer requests que simulen un scrolling anticipadamente.
-export interface Respuesta {
+export interface RespuestaPersonajes {
     personajes: Personaje[];
     siguientePagina: string;
 }
 
 export interface RespuestaPersonaje {
-    id: number;
-    name: string;
-    image: string;
-    species: string;
-    episode: string[];
-    status: string;
-    origin: {
-        name: string;
-        url: string
-    };
-    gender: string;
+    personaje: PersonajeDetalle;
 }
 
-// export default Respuesta;
-// export default RespuestaPersonaje;
+export interface RespuestaEpisodio {
+    episodio: Episodio
+}

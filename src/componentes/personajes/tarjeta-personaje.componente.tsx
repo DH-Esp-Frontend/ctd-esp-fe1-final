@@ -5,8 +5,9 @@ import { useDispatch} from 'react-redux';
 import { IRootState,  useSelector } from '../../store/store';
 import Personaje from '../../types/personaje.type';
 import { useNavigate } from 'react-router-dom';
-import { agregarFavorito, eliminarFavorito } from '../../actions/personaje.actions';
+import { agregarFavorito, buscarPersonajePorIdThunk, eliminarFavorito } from '../../actions/personaje.actions';
 import { decrementarPagina } from '../../actions/pagina.action';
+import { buscarPersonajePorIdAPI } from '../../services/personaje.services';
 
 
 interface TarjetaPersonajeProps {
@@ -43,8 +44,13 @@ const TarjetaPersonaje: FC<TarjetaPersonajeProps> = ({personaje}:TarjetaPersonaj
         }
     }
 
+    const handleClick = () => {
+        dispatch(buscarPersonajePorIdThunk(personaje.id));
+        navigate('/detalle/' + personaje.id)
+    }
+    
     return <div className="tarjeta-personaje" >
-        <img src={personaje.image} alt={personaje.name} onClick={() => navigate('/detalle/' + personaje.id)}/>
+        <img src={personaje.image} alt={personaje.name} onClick={handleClick}/>
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>
             <BotonFavorito esFavorito={esFavorito} onClick={handleFavorito} />

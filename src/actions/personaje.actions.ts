@@ -1,7 +1,8 @@
 import { Action, ActionCreator, ThunkAction } from '@reduxjs/toolkit';
-import { buscarPersonajesPorNombreAPI, buscarPersonajesPorPaginaAPI } from '../services/personaje.services';
+import { buscarPersonajePorIdAPI, buscarPersonajesPorNombreAPI, buscarPersonajesPorPaginaAPI } from '../services/personaje.services';
 import { IRootState } from '../store/store';
-import Personaje  from '../types/personaje.type';
+import Personaje, {PersonajeDetalle}  from '../types/personaje.type';
+import { buscarEpisodioThunk } from './episodio.action';
 
 export interface BuscarPersonajesAction extends Action {
     type: 'BUSCAR_PERSONAJES',
@@ -19,6 +20,17 @@ export interface BuscarPersonajesErrorAction extends Action {
     error: string
 }
 
+export interface BuscarPersonajePorIdSuccessAction extends Action {
+    type: 'BUSCAR_PERSONAJE_SUCCESS',
+    personajeDetalle: PersonajeDetalle
+}
+
+export interface BuscarPersonajePorIdErrorAction extends Action {
+    type: 'BUSCAR_PERSONAJE_ERROR',
+    error: string
+}
+
+
 export interface BuscarProximaPaginaAction extends Action {
     type: 'BUSCAR_PROXIMA_PAGINA',
 }
@@ -35,7 +47,7 @@ export interface LimpiarFavoritosAction extends Action {
     type: 'LIMPIAR_FAVORITOS',
 }
 
-export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction | BuscarProximaPaginaAction | AgregarFavoritoAction | EliminarFavoritoAction | LimpiarFavoritosAction ;
+export type PersonajeAction = BuscarPersonajesAction | BuscarPersonajesSuccessAction | BuscarPersonajesErrorAction |  BuscarPersonajePorIdSuccessAction | BuscarPersonajePorIdErrorAction | BuscarProximaPaginaAction | AgregarFavoritoAction | EliminarFavoritoAction | LimpiarFavoritosAction ;
 
 interface BuscarPersonajesThunkAction extends ThunkAction<void, IRootState, unknown, PersonajeAction> {};
 
@@ -60,6 +72,21 @@ const buscarPersonajesError: ActionCreator<BuscarPersonajesErrorAction> = (error
         error: error
     }
 }
+
+const buscarPersonajePorIdSuccess: ActionCreator<BuscarPersonajePorIdSuccessAction> = (personajeDetalle: PersonajeDetalle) => {
+    return {
+        type: 'BUSCAR_PERSONAJE_SUCCESS',
+        personajeDetalle: personajeDetalle
+    }
+}
+
+const buscarPersonajePorIdError: ActionCreator<BuscarPersonajePorIdErrorAction> = (error: string) => {
+    return {
+        type: 'BUSCAR_PERSONAJE_ERROR',
+        error: error
+    }
+}
+
 const buscarProximaPaginaSuccess: ActionCreator<BuscarPersonajesSuccessAction> = (personajes: Personaje[], siguientePagina:string) => {
     return {
         type: 'BUSCAR_PROXIMA_PAGINA_SUCCESS',
@@ -103,6 +130,21 @@ export const buscarPersonajesThunk = (name: string): BuscarPersonajesThunkAction
             } catch (error) {
                 dispatch(buscarPersonajesError(error));
             }
+        }
+    }
+}
+
+export const buscarPersonajePorIdThunk = (id: number): BuscarPersonajesThunkAction => {
+    return async (dispatch) => {
+        try {
+            const respuesta = await buscarPersonajePorIdAPI(id);
+            dispatch(buscarPersonajePorIdSuccess(respuesta.personaje));
+            
+            respuesta.personaje.episode.forEach(episodio => {
+                dispatch(buscarEpisodioThunk(episodio.split('/').pop() || ''));
+            });
+        } catch (error) {
+            dispatch(buscarPersonajePorIdError(error));
         }
     }
 }

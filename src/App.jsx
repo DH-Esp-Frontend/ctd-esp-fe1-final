@@ -7,11 +7,8 @@ import PaginaDetalle from "./paginas/Detalle.pagina";
 import Encabezado from "./componentes/layout/encabezado.componente";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
-import {QueryClient, QueryClientProvider } from 'react-query'
 
 function App() {
-
-  const queryClient = new QueryClient();
 
   return (
     <Provider store={store}>
@@ -20,11 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PaginaInicio />} />
           <Route path="favoritos" element={<PaginaFavoritos />} />
-          <Route path="detalle/:id" element={
-            <QueryClientProvider client={queryClient}>
-              <PaginaDetalle />
-            </QueryClientProvider>
-          } />
+          <Route path="detalle/:id" element={<PaginaDetalle />} />
         </Routes>
       </div>
     </Provider>

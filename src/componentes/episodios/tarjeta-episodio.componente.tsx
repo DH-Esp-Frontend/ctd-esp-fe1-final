@@ -1,14 +1,11 @@
 import './tarjeta-episodio.css';
-import { getEpisode } from '../../services/capitulo.services';
-import { useQuery } from 'react-query';
 import { FC } from 'react';
+import { IRootState, useSelector } from '../../store/store';
 
 
 interface TarjetaEpisodioProps {
     episodio: string
 }
-
-
 /**
  * Tarjeta para cada episodio dentro de la vista de personaje.
  * 
@@ -19,17 +16,18 @@ interface TarjetaEpisodioProps {
  */
 const TarjetaEpisodio: FC<TarjetaEpisodioProps>= ({episodio}:TarjetaEpisodioProps) => {
     // Como los capitulos suelen repetirse entre personajes, aprovecho el cache de React Query para no volver a pedir la informacion.
-    const {data, isLoading, error} = useQuery(['episode',episodio.split('/').pop()], () => getEpisode(episodio));
+    const id = episodio.split('/').pop();
+    const {episodios} = useSelector((state:IRootState) => state.episodios);
     
-    // Si hay error, muestro un mensaje de error.
-    if (error) return <div className="tarjeta-episodio"><h4>Error Buscando informacion</h4></div> 
+    // Encuentro el episodio en el store usando el id. Como id obtenido del url es string, no valido el tipo de dato, y uso == en vez de ===
+    const data = episodios.find(episodio => episodio.id == id);
     
     // Retorno el template con la informacion del episodio.
     return <div className="tarjeta-episodio">
-                <h4>{!isLoading ? data.name : 'Cargando...' }</h4>
+                <h4>{data?.name}</h4>
                 <div>
-                    <span>{!isLoading && data.episode}</span>
-                    <span>Lanzado el: {!isLoading && data.air_date}</span>
+                    <span>{data?.episode}</span>
+                    <span>Lanzado el: {data?.air_date}</span>
                 </div>
             </div>
 }
