@@ -112,12 +112,8 @@ Los siguientes aspectos son extras al requisito mínimo de aprobación que será
 
 ### Resultado final
 
-    Te dejamos un GIF como ejemplo de cómo debería funcionar tu aplicación.
-
-#### Resultado final - Funcionalidades obligatorias
-
-#### Resultado final - Funcionalidades extras
-
+    Te dejamos un video como ejemplo de cómo debería funcionar tu aplicación, en la carpeta public
+    
 ## Desarrollo
 
 ### Iniciando la App
@@ -181,7 +177,7 @@ Solo se admitirán entregas recibidas hasta el cierre de la clase 24, clase de E
 
 Se aceptará la entrega mediante la submisión de la URL de un repositorio de Github Privado, que haya compatido acceso a las siguientes cuentas: 
 * Camada 1 - Profesor: Tomás de Priede - Cuenta de Github [@tomiito](https://github.com/tomiito)
-* Camada 2 - Profesor: Matías Rivas - Cuenta de Github [@TODO](https://github.com/)
+* Camada 2 - Profesor: Matías Rivas - Cuenta de Github [@mrivasdh](https://github.com/)
 
 El link al Google Form para la submisión será enviado por el profesor a cargo de la comisión.
 
@@ -286,7 +282,6 @@ export const store = createStore(
 // sagaMiddleware.run(tusSaga)  Una vez que crees tu archivo con los Sagas, deberas ejecutarlos acá
 
 ```
-
 
 ### Paso 4 - Tipado de los componentes existentes
 
