@@ -31,7 +31,27 @@ Examen Final de Frontend IV
 
 ## Requisitos
 
-Es indispensable realizar un Fork de este proyecto, para poder trabajar de forma *individual*. No se aceptarán proyectos que se hayan realizado sin partir de este template.
+## Requisitos
+
+Es indispensable clonar este proyecto en un repositorio privado, para poder trabajar de forma *individual*. No se aceptarán proyectos que se hayan realizado sin partir de este template. Para eso deberás crear un repositorio con el nombre "ctd-esp-fe1-final" en tu cuenta de Github y luego seguir los siguientes pasos en tu terminal
+
+```
+# clona el repositorio del final en tu computadora
+git clone https://github.com/DH-Esp-Frontend/ctd-esp-fe1-final 
+
+# ingresa al directorio del final
+cd ctd-esp-fe1-final
+
+# elimina los links al repositorio de DH
+git remove rm origin
+
+# Agrega el link al repositorio de tu cuenta de github, reemplaza <tuusuario> por tu cuenta
+git remote add origin https://github.com/<tuusuario>/ctd-esp-fe1-final
+
+# Sube el template inicial a tu repositorio de github
+git push -u origin main
+```
+No olvides agregar los permisos a las cuentas mencionadas en el [Formato de Entrega](#formato-de-entrega) antes de la [Fecha de Entrega](#fecha-de-entrega)!
 
 ### Condiciones mínimas de aprobación
 
