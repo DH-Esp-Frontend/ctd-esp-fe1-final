@@ -194,8 +194,8 @@ Solo se admitirán entregas recibidas hasta el cierre de la clase 24, clase de E
 ### Formato de Entrega
 
 Se aceptará la entrega mediante la submisión de la URL de un repositorio de Github Privado, que haya compatido acceso a las siguientes cuentas: 
-* Camada 1 - Profesor: Tomás de Priede - Cuenta de Github [@tomiito](https://github.com/tomiito)
-* Camada 2 - Profesor: Matías Rivas - Cuenta de Github [@mrivasdh](https://github.com/)
+* Camada 1 - Profesor: Humberto Rivero - Cuenta de Github [@danieldamian09](https://github.com/danieldamian09)
+* Camada 2 - Profesor: Joan Gil - Cuenta de Github [@joandvgv](https://github.com/joandvgv)
 
 El link al Google Form para la submisión será enviado por el profesor a cargo de la comisión.
 
