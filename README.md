@@ -226,8 +226,6 @@ Configuracion de la Store
 ``` store.ts
 import { configureStore} from "@reduxjs/toolkit";
 
-
-
 const store = configureStore({
    // Reducer ,
 });
@@ -237,10 +235,10 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
-```
+``` 
 
 Luego en el App.jsx deberás configurar el Provider
-```
+``` index.ts
   import {Provider} from "react-redux";
 
   <Provider store={store}>
