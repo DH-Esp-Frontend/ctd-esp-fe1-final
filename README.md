@@ -146,13 +146,12 @@ Podemos iniciar nuestra aplicación con el comando
 
 ### Dependencias
 
-Se utilizara la version de React 17.0.2, junto con la version 5 de React Scripts. React-Router ya se encuentra instalado y configurado para la navegación.
+Se utilizara la version de React 18.2.0, junto con la version 5.0.1 de React Scripts. React-Router ya se encuentra instalado y configurado para la navegación.
 
 Solo se podrán instalar las siguientes dependencias:
 * Redux (incluida @reduxjs/toolkit)
 * Typescript
-* Thunk
-* Saga (Si no queremos usar Thunk)
+* Saga (Si no queremos usar Thunk de @reduxjs/toolkit)
 
 **NOTA: El uso de React Query y de la API de Context (React) no esta permitido**
 
@@ -206,51 +205,38 @@ Ahora que ya vimos cuáles son los requerimientos y funcionalidades que deberás
 
 Instalar Typescript
 
-`npm install typescript@4.6.3`
+`npm install typescript@4.9.5`
 
 Instalar Tipos de React
 
-`npm install --dev @types/node@16.11.26 @types/react@17.0.43 @types/react-dom@17.0.14`
+`npm install --dev @types/node@18.13.0 @types/react@18.0.27 @types/react-dom@18.0.10`
 
 Instalar Redux
 
-`npm install react-redux@7.2.6 @types/react-redux@7.1.23 @reduxjs/toolkit`
+`npm install react-redux@8.0.5 @types/react-redux@7.1.25 @reduxjs/toolkit@1.9.2`
 
-Y finalmente instalar Thunk
+Y finalmente instalar Saga (Si lo preferis en vez de Thunk)
 
-`npm install redux-thunk@2.4.1`
-
-o Saga (Si lo preferis en vez de Thunk)
-
-`npm install redux-saga@1.1.3`
+`npm install redux-saga@1.2.2`
 
 ### Paso 1 - Configuración de Redux 
 
 Configuracion de la Store
 
 ``` store.ts
-import {combineReducers} from "@reduxjs/toolkit";
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-// Importamos applyMiddleware de Redux, para poder agregar Thunk o Saga como Middleware
-import { createStore, applyMiddleware } from 'redux';
-import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
+import { configureStore} from "@reduxjs/toolkit";
 
 
 
-const rootReducer = combineReducers({
-   
+const store = configureStore({
+   // Reducer ,
 });
 
-export type IRootState = ReturnType<typeof rootReducer>;
+// Tipamos el hook useSelector y useDispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-// Tipamos el hook useSelector
-export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector
-
-export const store = createStore(
-    rootReducer, composeWithDevTools() // Aqui aplicaremos los middlewares
-)
-
+export default store;
 ```
 
 Luego en el App.jsx deberás configurar el Provider
@@ -261,29 +247,13 @@ Luego en el App.jsx deberás configurar el Provider
     ... 
   </Provider>
 ```
-
-### Paso 2 - Configuración de Thunk
-
-Si vas a usar Saga, este paso lo podes saltear
-
-``` store.ts
-// Importamos el thunk de redux-thunk
-import thunk from 'redux-thunk'
-
-export const store = createStore(
-    rootReducer, composeWithDevTools(applyMiddleware(thunk)) // 
-)
-
-```
-
-
-### Paso 3 - Configuración de Saga
+### Paso 2 - Configuración de Saga
 
 Este paso es opcional, solo lo necesitamos si vamos a utilizar Saga y no Thunk.
 
 ``` store.ts
-// Importamos el thunk de redux-thunk
-import createSagaMiddleware from "redux-saga";
+// Importamos el saga de redux-saga
+import {createSagaMiddleware} from "redux-saga";
 
 ... 
 
@@ -291,8 +261,9 @@ const sagaMiddleware = createSagaMiddleware()
 
 ...
 
-export const store = createStore(
-    rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware))
+export const store = configureStore(
+    rootReducer, 
+    sagaMiddleware
 )
 
 // Levanta los observadores, es decir corre los Saga
@@ -300,25 +271,25 @@ export const store = createStore(
 
 ```
 
-### Paso 4 - Tipado de los componentes existentes
-
-### Paso 5 - Modelado
+### Paso 3 - Tipado de los componentes existentes
+Cómo te mencionamos anteriormente, el proyecto cuenta con algunos componentes que te recomendamos utilizar, pero recordar que debes tiparlos con TypeScript.
+### Paso 4 - Modelado
 
 Con Redux, TypeScript y Thunk (o Saga!) ya configurados, podes proceder al armado de las interfaces del modelo. Es decir, crear las interfaces de los objetos que vas a usar en el proyecto. 
 Para esto, te recomendamos que visualizas el diseño final, e identifiques los campos, variables y tipos que vas a necesitar en tus objetos para tiparlos correctamente. 
 No hace falta que sean perfectos en esta etapa, los podrás ajustar después, pero van a ser de gran ayuda para arrancar a trabajar! 
 
-### Paso 6 - Creación del estado y el/los reducer
+### Paso 5 - Creación del estado y el/los reducer
 
 Es importante poder abstraernos un poco de la creación de la UI, y del HTML, para pensar en que funcionalidades queremos construir. 
 En esta etapa podemos identificar los eventos que muestra aplicación debe gestionar y que valores deben ser almacenados en el estado. 
 Por ejemplo, vamos a necesitar almacenar los personajes que nos retorne la API, junto con el estado de la petición. 
 
-Nota: No olvides agregar tu o tus reducers a la store dentro del combineReducers!
+Nota: No olvides agregar tu o tus reducers a la store!
 
-### Paso 7 - Armado de la UI 
+### Paso 6 - Armado de la UI 
 Con el modelo ya creado, y nuestro reducer listo para ser utilizado, podemos proceder al armado de la UI básica. 
-Cómo te mencionamos anteriormente, el proyecto cuenta con algunos componentes que te recomendamos utilizar, pero recordar que debes tiparlos con TypeScript.
+
 Ya estarías en condiciones de armar la página principal, colocando el buscador, y armar una grilla que utilize las Tarjetas del personaje y el componente de paginacion. 
 
 Para probar esta pantalla, podes llamar a la API, directamente desde tu componente, mediante useEffect y utilizando useState, pero no olvides que deberás utilizar al menos una vez una llamada asíncronica por medio de Thunk o Saga como condición mínima para aprobar. 
@@ -327,7 +298,7 @@ Te recomendamos dejar un //TODO para no olvidar modificar está función.
 Con la grilla funcionando adecuadamente, podes proceder al armado del listado de favoritos. Para ello, te recomendamos utilizar la misma API, para probar el renderizado de la UI. 
 Una vez que muestres personajes en el listado de favoritos, ya podes colocar un //TODO para acordarte de integrar esto con el estado de Redux correspondiente. 
 
-### Paso 8 - Integración 
+### Paso 7 - Integración 
 Ahora sí, podemos ir componente a componente integrando con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado 
 
 *Tip: Recordá que podes visualizar que está sucediendo en el estado a través de la extensión del Chrome ReduxDevTools y si es necesario debuggear para encontrar los posibles errores.*
