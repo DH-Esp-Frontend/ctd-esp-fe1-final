@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from '../../redux/hooks';
+import { fetchCharacter } from '../slice/rickySlice';
 import './paginacion.css';
 
 /**
@@ -10,9 +13,16 @@ import './paginacion.css';
  */
 const Paginacion = () => {
 
+    const [page, setPage]= useState(1)
+    const dispatch = useAppDispatch()
+  
+    useEffect(() => {
+        dispatch(fetchCharacter(page))
+    }, [page])
+
     return <div className="paginacion">
-        <button disabled={true} className={"primary"}>Anterior</button>
-        <button disabled={false} className={"primary"}>Siguiente</button>
+        <button disabled={page ===1? true:false} className={"primary"} onClick={() => setPage(page-1)}>Anterior</button>
+        <button disabled={false} className={"primary"} onClick={() => setPage(page+1)}>Siguiente</button>
     </div>
 }
 

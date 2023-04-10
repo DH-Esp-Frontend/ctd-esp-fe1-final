@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
 
@@ -11,11 +12,24 @@ import TarjetaPersonaje from './tarjeta-personaje.componente';
  */
 const GrillaPersonajes = () => {
 
-    return <div className="grilla-personajes">
-       <TarjetaPersonaje />
-       <TarjetaPersonaje />
-       <TarjetaPersonaje />
+    const dispatch = useAppDispatch()
+    const personaje= useAppSelector(state => state.personaje)
+    const loading= useAppSelector(state=> state.personaje.loading)
+
+    console.log(personaje.personajes)
+    return (
+        
+    <div className="grilla-personajes">
+    { personaje.personajes?.map((personaje)=>{
+        return  <TarjetaPersonaje
+         personaje= {personaje}
+         key= {personaje.id}/>
+    }
+        )
+    } 
+            
     </div>
+    )
 }
  
 export default GrillaPersonajes;
