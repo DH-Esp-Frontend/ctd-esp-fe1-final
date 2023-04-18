@@ -10,17 +10,14 @@ import TarjetaPersonaje from './tarjeta-personaje.componente';
  * 
  * @returns un JSX element 
  */
-const GrillaPersonajes = () => {
+const GrillaPersonajes = ({personajes}) => {
+    
+    /*const personaje= useAppSelector(state => state.personaje)*/
 
-    const dispatch = useAppDispatch()
-    const personaje= useAppSelector(state => state.personaje)
-    const loading= useAppSelector(state=> state.personaje.loading)
-
-    console.log(personaje.personajes)
     return (
         
     <div className="grilla-personajes">
-    { personaje.personajes?.map((personaje)=>{
+    { personajes?.map((personaje)=>{
         return  <TarjetaPersonaje
          personaje= {personaje}
          key= {personaje.id}/>

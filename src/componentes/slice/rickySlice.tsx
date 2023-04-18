@@ -25,6 +25,7 @@ interface Personaje{
         personajes: Personaje[]
         loading: boolean
         busqueda: string
+        favoritos:Personaje[]
     }
 
     
@@ -52,7 +53,8 @@ export const fetchCharacter= createAsyncThunk(
   const initialState: initialType = {
     personajes: [],
     loading: false,
-    busqueda:""
+    busqueda:"",
+    favoritos:[]
   } 
 
 
@@ -61,8 +63,15 @@ export const fetchCharacter= createAsyncThunk(
     initialState,
     reducers: {
       busqueda:(state, action)=>{
-        console.log(action.payload)
         state.busqueda= action.payload
+      },
+      agregaFavorito:(state, action)=>{
+        if(!state.favoritos.find(item => item.id === action.payload.id)){
+          state.favoritos.push(action.payload)
+        }else{
+          state.favoritos = state.favoritos.filter(item => item.id !== action.payload.id)
+        }
+          
       }
     },
     extraReducers: (builder) => {
@@ -84,4 +93,4 @@ export const fetchCharacter= createAsyncThunk(
 
   export default characterSlice.reducer
   
-  export const {busqueda} = characterSlice.actions
+  export const {busqueda, agregaFavorito} = characterSlice.actions
