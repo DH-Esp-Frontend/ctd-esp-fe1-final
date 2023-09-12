@@ -8,6 +8,7 @@ import './paginacion.css';
  * 
  * @returns un JSX element 
  */
+
 const Paginacion = () => {
 
     return <div className="paginacion">
