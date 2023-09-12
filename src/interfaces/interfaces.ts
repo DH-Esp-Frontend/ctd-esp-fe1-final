@@ -49,3 +49,9 @@ export enum Status {
     Unknown = "unknown",
 }
 
+export interface characterState 
+{
+    dataCharacter: character[],
+    loading: boolean,
+    Error:string | null
+}

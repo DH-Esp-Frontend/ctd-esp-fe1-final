@@ -1,26 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { characterState } from '../../../interfaces/interfaces';
 
 
-const initialStateCaracter
+
+const inicialState: characterState = 
+{
+  dataCharacter:[],
+  loading:true,
+  Error:null
+}
 
 export const characterSlice = createSlice({
   name: 'character',
-  initialState: initialStateCaracter,
+  initialState: inicialState,
 
   reducers: {
-    increment: (state) => {
-      state.character += 1;
-    },
-
-    decrement: (state) => {
-      state.character -= 1;
-    },
-
-    incrementBy: (state, action) => {
-    console.log(action) 
-      state.character += action.payload;
-    },
+   
   },
 });
 
-export const { increment, decrement, incrementBy } = characterSlice.actions;
+export const { } = characterSlice.actions;
