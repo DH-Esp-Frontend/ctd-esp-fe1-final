@@ -7,7 +7,7 @@ export interface BotonFavoritoProps
 
 export interface Welcome {
     info:    infoApi;
-    results: character[];
+    results: Icharacter[];
 }
 
 export interface infoApi {
@@ -17,7 +17,7 @@ export interface infoApi {
     prev:  string;
 }
 
-export interface character {
+export interface Icharacter {
     id:       number;
     name:     string;
     status:   Status;
@@ -51,7 +51,13 @@ export enum Status {
 
 export interface characterState 
 {
-    dataCharacter: character[],
+    dataCharacter: Icharacter[],
     loading: boolean,
     Error:string | null
 }
+
+
+export interface IPagination {
+    page: number
+  }
+  

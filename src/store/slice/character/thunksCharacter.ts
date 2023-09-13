@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { character } from "../../../interfaces/interfaces";
+import { Icharacter } from "../../../interfaces/interfaces";
 
 export const GET_CHARACTERS = createAsyncThunk
 (
     'character/GET_CHARACTERS',
-    async ({data, parameter}: {data:number | string; parameter:string}): Promise<character[]> => 
+    async ({data, parameter}: {data:number | string; parameter:string})=> 
     {
         try
         {
@@ -26,7 +26,7 @@ export const GET_CHARACTERS = createAsyncThunk
     }
 );
 
-export const GET_CHARACTER_BY_ID = createAsyncThunk('character/GET_CHARACTERS',async (id:number): Promise<character[]> => {
+export const GET_CHARACTER_BY_ID = createAsyncThunk('character/GET_CHARACTERS',async (id:number): Promise<Icharacter[]> => {
     const dataResulsCharacter = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
     const dataResponseCharacter = await dataResulsCharacter.json();
     return dataResponseCharacter;
