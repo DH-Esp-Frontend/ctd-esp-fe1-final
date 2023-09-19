@@ -1,8 +1,10 @@
 import { configureStore} from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook,useDispatch, useSelector } from "react-redux";
+import characterReducer from "./characters/slice";
+
 const store = configureStore({
     reducer :{
-
+        characters: characterReducer,
     },
 })
 

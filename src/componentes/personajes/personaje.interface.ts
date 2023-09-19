@@ -1,3 +1,5 @@
+import { ICharacter } from "../../interfaces/character.interface";
+
 export interface IFiltros{
     name: string | null,
     setName: (name: string | null  )=> void
@@ -9,4 +11,8 @@ export interface IFiltros{
     nombre: string;
     imagenUrl: string;
     esFavorito: boolean
+  }
+  
+  export interface IGrillaPersonajes{
+    initialCharacters: ICharacter[]
   }

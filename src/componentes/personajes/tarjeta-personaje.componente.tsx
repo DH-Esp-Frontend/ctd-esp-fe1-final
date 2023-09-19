@@ -1,5 +1,8 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
+import { ITarjetaPersonaje } from './personaje.interface';
+import { ADD_FAVORITOS } from '../../store/characters/slice';
+import { useAppDispatch } from '../../store';
 
 
 /**
@@ -11,13 +14,17 @@ import './tarjeta-personaje.css';
  * @returns un JSX element 
  */
 
-const TarjetaPersonaje = () => {
+const TarjetaPersonaje = ({nombre, imagenUrl, esFavorito, id }: ITarjetaPersonaje) => {
+    const dispatch = useAppDispatch()
 
+    const addFavorito = (id: number):void=> {
+    dispatch(ADD_FAVORITOS(id))
+  }
     return <div className="tarjeta-personaje">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
+        <img src={imagenUrl} alt={nombre}/>
         <div className="tarjeta-personaje-body">
-            <span>Rick Sanchez</span>
-            <BotonFavorito esFavorito={false} />
+            <span>{nombre}</span>
+            <BotonFavorito onClick={addFavorito} esFavorito={esFavorito} id={id}/>
         </div>
     </div>
 }
