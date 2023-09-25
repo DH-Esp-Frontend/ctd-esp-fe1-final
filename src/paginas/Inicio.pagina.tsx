@@ -34,7 +34,7 @@ const PaginaInicio = () => {
         <div className="actions">
             <h3>Catálogo de Personajes</h3>
             <button onClick={handleCleanFilter} className="danger">Limpiar Filtro</button>
-        </div>
+k        </div>
         <Filtros name={name} setName={setName}  urlBase ={urlBase} />
 
 
