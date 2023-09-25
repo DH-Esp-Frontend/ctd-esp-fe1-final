@@ -6,12 +6,7 @@ export interface IFiltros{
     urlBase: string
   }
 
-  export interface ITarjetaPersonaje {
-    id: number
-    nombre: string;
-    imagenUrl: string;
-    esFavorito: boolean
-  }
+ 
   
   export interface IGrillaPersonajes{
     initialCharacters: ICharacter[]

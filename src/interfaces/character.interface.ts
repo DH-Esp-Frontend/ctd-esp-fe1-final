@@ -3,9 +3,7 @@ export interface ICharacter {
     name: string;
     image: string;
     esFavorito: boolean;
-    pageNext: string;
-    pagePrev: string;
-    source: string;
+   
 }
 export interface IAllCharacters{
     allCharacters:ICharacter[]
