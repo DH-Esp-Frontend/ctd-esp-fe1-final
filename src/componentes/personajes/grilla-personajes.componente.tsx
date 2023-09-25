@@ -23,7 +23,7 @@ const GrillaPersonajes = ({initialCharacters} : IGrillaPersonajes) => {
      // Mapea los personajes iniciales y establece esFavorito en true si están en la lista de favoritos
      const charactersWithFavoritos = initialCharacters.map(character => ({
        ...character,
-       esFavorito: favoritosIds.includes(character.id),
+       isFavorite: favoritosIds.includes(character.id),
      }));
      
      return <div className="grilla-personajes">
@@ -32,7 +32,7 @@ const GrillaPersonajes = ({initialCharacters} : IGrillaPersonajes) => {
         
         charactersWithFavoritos?.map(character =>
                 
-                 <TarjetaPersonaje name={character.name} image={character.image} key={character.id} id={character.id} esFavorito={character.esFavorito} />
+                 <TarjetaPersonaje name={character.name} image={character.image} key={character.id} id={character.id} isFavorite={character.isFavorite} />
             )}
                    { isError && <p>{isError}</p>}
        

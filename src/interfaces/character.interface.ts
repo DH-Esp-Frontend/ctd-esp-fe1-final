@@ -2,7 +2,7 @@ export interface ICharacter {
     id:number;
     name: string;
     image: string;
-    esFavorito: boolean;
+    isFavorite: boolean;
    
 }
 export interface IAllCharacters{

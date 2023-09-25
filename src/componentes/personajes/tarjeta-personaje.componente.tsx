@@ -12,12 +12,12 @@ import { ICharacter } from '../../interfaces/character.interface';
 * @returns un JSX element 
  */
 
-const TarjetaPersonaje = ({name, image, esFavorito, id}: ICharacter) => {  
+const TarjetaPersonaje = ({name, image, isFavorite, id}: ICharacter) => {  
     return <div className="tarjeta-personaje">
         <img src={image} alt={name}/>
         <div className="tarjeta-personaje-body">
             <span>{name}</span>
-            <BotonFavorito esFavorito={esFavorito} id={id} name={name} image={image}/>
+            <BotonFavorito isFavorite={isFavorite} id={id} name={name} image={image}/>
         </div>
     </div>
 }

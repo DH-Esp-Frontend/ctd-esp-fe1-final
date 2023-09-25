@@ -35,10 +35,11 @@ export const charactersSlice = createSlice({
     reducers : {
         /**
         * Agrega a favoritos un nuevo personaje agregándolo al estado de la propiedad listfavoritos[]
-        * @author 'Ivana Kowalczuk'
+        * @author 'Carmen Vargas'
         * @param { WritableDraft<CharacterState> } state 
+        * @return {Object} retorna el objeto, personaje agregado al array de favoritos
         * @param {PayloadAction<ICharacter>} action 
-        * @return {Object} retorna el objeto, personaje que se agrega al array de personajes favoritos
+        * 
         */
              ADD_FAVORITOS: (state, action: PayloadAction<ICharacter>) => {      
                const personaje = action.payload;
@@ -46,12 +47,12 @@ export const charactersSlice = createSlice({
                  (fav) => fav.id === personaje.id
                );
                if (esFavorito) {
-                 esFavorito.esFavorito = false;
+                 esFavorito.isFavorite = false;
                  state.listFavoritos = state.listFavoritos.filter(
                    (item) => item.id !== esFavorito.id
                  );
                } else {
-                 personaje.esFavorito = true;
+                 personaje.isFavorite = true;
                  state.listFavoritos.push(personaje);
                }      
              },
@@ -59,11 +60,11 @@ export const charactersSlice = createSlice({
                     
        /**
         * Limpia el estado del array de favoritos para dejarlo como array vacío
-        * @author 'Ivana Kowalczuk'
+        * @author 'Carmen Vargas'
         * @param {WritableDraft<CharacterState>} state
         * @return {Array} retorna un array vacío para el estado de listFavoritos[]
         */
-               CLEAN_ALL_FAVORITOS:  (state) => {
+               CLEAR_ALL_FAVORITES:  (state) => {
                    state.listFavoritos = []
                }
              
@@ -73,7 +74,7 @@ export const charactersSlice = createSlice({
                /**
         * Usa el método GET_CHARACTES para guardar en el estado del array allCharacters además, g
         * uarda los estados de la página anterior y la siguiente
-        * @author 'Ivana Kowalczuk'
+        * @author 'Carmen Vargas'
         * @param { WritableDraft<CharacterState>} state 
         * @param {PayloadAction<IAllCharacters>} action
         * @return {Array} retorna un array de personajes
@@ -99,8 +100,7 @@ export const charactersSlice = createSlice({
        
            /**
         * Usa el método GET_CHARACTES_FILTER para filtrar por nombre. Necesita recibir el nombre buscado que se ingresa en el input.
-        * @author 'Ivana Kowalczuk'
-        * @param {WritableDraft<CharacterState>} state 
+        * @author 'Carmen Vargas'
         * @return {Array} retorna un array de personajes filtrados por nombre de tipo IAllCharacters
         */
                builder.addCase(GET_CHARACTERS_FILTER.pending, ( state   ) => {

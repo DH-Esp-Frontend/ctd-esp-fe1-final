@@ -22,7 +22,7 @@ const PaginaInicio = () => {
     
     const [name, setName] = useState<string | null >('');
 
-    const handelCleanFilter = () =>{
+    const handleCleanFilter = () =>{
         setName(null)     
     }
   
@@ -33,7 +33,7 @@ const PaginaInicio = () => {
     return <div className="container">
         <div className="actions">
             <h3>Catálogo de Personajes</h3>
-            <button onClick={handelCleanFilter} className="danger">Limpiar Filtro</button>
+            <button onClick={handleCleanFilter} className="danger">Limpiar Filtro</button>
         </div>
         <Filtros name={name} setName={setName}  urlBase ={urlBase} />
 
