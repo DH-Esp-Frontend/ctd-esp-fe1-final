@@ -13,10 +13,36 @@ import { GET_CHARACTERS } from "../store/characters/thunk";
  */
 const PaginaFavoritos = () => {
     const dispatch = useAppDispatch()
-    const { listFavoritos, urlBase, esfavorito} = useAppSelector((state) => state.characters)
+    const { listFavoritos, urlBase} = useAppSelector((state) => state.characters)
     useEffect(() => {
-        dispatch(GET_CHARACTERS(urlBase));
-      }, [])
+        dispatch(GET_CHARACTERS(urlBase))
+    
+      .then((response) => {
+        // Handle a successful API request here
+        console.log("Characters fetched successfully:", response);
+      })
+      .catch((error) => {
+        // Handle API request errors here
+        console.error("Error fetching characters:", error);
+      });
+  }, [dispatch,urlBase]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await dispatch(GET_CHARACTERS(urlBase));
+        // Handle a successful API request here
+        console.log("Characters fetched successfully:", response);
+      } catch (error) {
+        // Handle API request errors here
+        console.error("Error fetching characters:", error);
+      }
+    };
+
+    fetchData();
+  }, [dispatch,urlBase]);
+
+
+
     return <div className="container">
         <div className="actions">
             <h3>Personajes Favoritos</h3>
