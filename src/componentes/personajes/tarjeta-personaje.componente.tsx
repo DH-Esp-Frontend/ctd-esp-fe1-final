@@ -1,5 +1,7 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
+import { ICharacter } from '../../interfaces/character.interface';
+
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
@@ -7,15 +9,15 @@ import './tarjeta-personaje.css';
  * Deberás agregar las propiedades necesarias para mostrar los datos de los personajes
  * 
  * 
- * @returns un JSX element 
+* @returns un JSX element 
  */
-const TarjetaPersonaje = () => {
 
+const TarjetaPersonaje = ({name, image, isFavorite, id}: ICharacter) => {  
     return <div className="tarjeta-personaje">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
+        <img src={image} alt={name}/>
         <div className="tarjeta-personaje-body">
-            <span>Rick Sanchez</span>
-            <BotonFavorito esFavorito={false} />
+            <span>{name}</span>
+            <BotonFavorito isFavorite={isFavorite} id={id} name={name} image={image}/>
         </div>
     </div>
 }
