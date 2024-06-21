@@ -15,7 +15,7 @@ const TarjetaPersonaje = () => {
         <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
         <div className="tarjeta-personaje-body">
             <span>Rick Sanchez</span>
-            <BotonFavorito esFavorito={false} />
+            <BotonFavorito esFavorito ={false} />
         </div>
     </div>
 }
